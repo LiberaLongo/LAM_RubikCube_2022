@@ -15,9 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.rubikcubeandroid.R;
-
-import rubik_cube.Cube;
+import rubikcube.cube.Cube;
+import rubikcube.navigation.R;
 
 public class myButtonFragment extends Fragment implements Interface_my_Fragment{
 
@@ -51,7 +50,7 @@ public class myButtonFragment extends Fragment implements Interface_my_Fragment{
 
 		this.btnMoves = new Button[] {btnFront, btnRight, btnUp, btnBack, btnLeft, btnDown};
 
-		myViewModel model = new ViewModelProvider(requireActivity()).get(myViewModel.class);
+		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 
 		final String clockwiseText = (String) getResources().getText(R.string.clockwiseText);
 		final String anticlockwiseText = (String) getResources().getText(R.string.anticlockwiseText);
@@ -74,17 +73,14 @@ public class myButtonFragment extends Fragment implements Interface_my_Fragment{
 
 		for (int i = 0; i < Cube.FACES_IN_A_CUBE; i++) {
 			int finalI = i;
-			btnMoves[i].setOnClickListener(v -> {
-				model.MOVE(finalI);
-			});
+			btnMoves[i].setOnClickListener(v -> model.MOVE(finalI));
 		}
 	}
 	@Override
 	public void updateButtons(int[] default_colors) {
 		if(btnMoves != null)
 			for(int i = 0; i < Cube.FACES_IN_A_CUBE; i++) {
-				int finalI = i;
-				btnMoves[i].setBackgroundColor(default_colors[finalI]);
+				btnMoves[i].setBackgroundColor(default_colors[i]);
 			}
 		else
 			Log.d("ERROR", "button of moves not initialized");
