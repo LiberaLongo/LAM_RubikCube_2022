@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/reset"
+		android:title="@string/cube_reset"
+		android:icon="@drawable/ic_reset"/>
+	<item
+		android:id="@+id/random"
+		android:title="@string/cube_random"
+		android:icon="@drawable/ic_random"/>
+	<item
+		android:id="@+id/save"
+		android:title="@string/cube_save"
+		android:icon="@drawable/ic_save"/>
+	<item
+		android:id="@+id/load"
+		android:title="@string/cube_load"
+		android:icon="@drawable/ic_load"/>
+</menu>

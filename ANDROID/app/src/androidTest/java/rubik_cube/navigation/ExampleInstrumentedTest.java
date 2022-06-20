@@ -1,4 +1,4 @@
-package rubikcube.navigation;
+package rubik_cube.navigation;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
 	public void useAppContext() {
 		// Context of the app under test.
 		Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-		assertEquals("rubikcube.navigation", appContext.getPackageName());
+		assertEquals("rubik_cube.navigation", appContext.getPackageName());
 	}
 }

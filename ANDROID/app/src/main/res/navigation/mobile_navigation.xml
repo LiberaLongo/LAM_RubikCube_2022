@@ -7,19 +7,43 @@
 
 	<fragment
 		android:id="@+id/nav_home"
-		android:name="rubikcube.navigation.ui.home.HomeFragment"
+		android:name="rubik_cube.navigation.ui.HomeFragment"
 		android:label="@string/menu_home"
 		tools:layout="@layout/fragment_home" />
 
 	<fragment
-		android:id="@+id/nav_gallery"
-		android:name="rubikcube.navigation.ui.gallery.GalleryFragment"
-		android:label="@string/menu_gallery"
-		tools:layout="@layout/fragment_gallery" />
+		android:id="@+id/nav_help"
+		android:name="rubik_cube.navigation.ui.HelpFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" />
 
 	<fragment
-		android:id="@+id/nav_slideshow"
-		android:name="rubikcube.navigation.ui.slideshow.SlideshowFragment"
-		android:label="@string/menu_slideshow"
-		tools:layout="@layout/fragment_slideshow" />
+		android:id="@+id/nav_visualizeAlgorithm"
+		android:name="rubik_cube.navigation.ui.VisualizeFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/nav_writeAlgorithm"
+		android:name="rubik_cube.navigation.ui.WriteFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/nav_importAlgorithm"
+		android:name="rubik_cube.navigation.ui.ImportFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/nav_send"
+		android:name="rubik_cube.navigation.ui.SendFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/nav_color"
+		android:name="rubik_cube.navigation.ui.ColorFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" />
 </navigation>

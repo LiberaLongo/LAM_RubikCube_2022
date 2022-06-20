@@ -1,4 +1,4 @@
-package rubikcube.navigation;
+package rubik_cube.navigation;
 
 import org.junit.Test;
 
