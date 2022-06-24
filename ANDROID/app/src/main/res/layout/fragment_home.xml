@@ -7,16 +7,45 @@
 	tools:context=".ui.HomeFragment">
 
 	<TextView
-		android:id="@+id/text_home"
+		android:id="@+id/textViewResult"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginStart="8dp"
-		android:layout_marginTop="8dp"
-		android:layout_marginEnd="8dp"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/hello"
 		android:textAlignment="center"
-		android:textSize="20sp"
-		app:layout_constraintBottom_toBottomOf="parent"
+		android:textColor="@color/white"
+		android:textSize="@dimen/bigFontSize"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent" />
+
+	<ImageView
+		android:id="@+id/Image"
+		android:layout_width="@dimen/width_3D_image"
+		android:layout_height="@dimen/height_3D_image"
+		android:contentDescription="@string/cubes_visuals"
+		app:layout_constraintBottom_toTopOf="@+id/button_fragment"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/button_fragment"
+		android:name="rubik_cube.cube.myButtonFragment"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toTopOf="@+id/textViewHistory"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<TextView
+		android:id="@+id/textViewHistory"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/history"
+		android:textColor="@color/white"
+		android:textSize="@dimen/bigFontSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
