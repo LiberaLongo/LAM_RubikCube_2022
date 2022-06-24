@@ -5,6 +5,7 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import rubik_cube.cube.CubeViewModel;
 import rubik_cube.navigation.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +25,14 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		rubik_cube.navigation.databinding.ActivityMainBinding binding =
+		//my cube creation
+		int[] cube_colors = getResources().getIntArray(R.array.color_array);
+		CubeViewModel cube_model = new ViewModelProvider(this).get(CubeViewModel.class);
+		cube_model.createCube(cube_colors, false);
+
+		//navigation stuff
+
+		ActivityMainBinding binding =
 				ActivityMainBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
@@ -46,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.cube_menu, menu);
 		return true;
 	}
 

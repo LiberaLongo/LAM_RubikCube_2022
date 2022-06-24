@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- string.xml -->
+
+	<string name="menu_home">家</string>
+	<string name="menu_help">帮助</string>
+	<string name="menu_visualize">可视化算法</string>
+	<string name="menu_write">写你的算法 (TXT)</string>
+	<string name="menu_import">导入pdf</string>
+	<string name="menu_send">发送和接收</string>
+	<string name="menu_color">改变颜色</string>
+
+	<string name="cube_reset">重置</string>
+	<string name="cube_random">随机的</string>
+	<string name="cube_save">节省</string>
+	<string name="cube_load">加载</string>
+
+	<!--cube.xml-->
+
+	<string name="hello">你好 世界!</string>
+
+	<string name="clockwiseText">顺时针</string>
+	<string name="anticlockwiseText">逆时针</string>
+
+	<string name="moveText">你 搬家了: </string>
+
+	<string name="random">随机化</string>
+	<string name="reset">重启</string>
+	<string name="save">节省</string>
+	<string name="load">加载</string>
+
+	<string name="Front_letter">正</string>
+	<string name="Right_letter">右</string>
+	<string name="Up_letter">上</string>
+	<string name="Back_letter">背</string>
+	<string name="Left_letter">左</string>
+	<string name="Down_letter">下</string>
+
+	<string name="Front_name">正面</string>
+	<string name="Right_name">右脸</string>
+	<string name="Up_name">上脸</string>
+	<string name="Back_name">背面</string>
+	<string name="Left_name">左脸</string>
+	<string name="Down_name">下脸</string>
+
+	<string name="cubes_visuals">立方体视觉效果</string>
+	<string name="history">动作史</string>
+
+	<!-- non used -->
+
+	<string name="default_colors">默认颜色</string>
+	<string name="new_cube">新立方体</string>
+
+	<dimen name="fontSize">40sp</dimen>
+	<dimen name="smallFontSize">30sp</dimen>
+
+	<!-- colors strings names -->
+
+	<string name="red_name">红色的</string>
+	<string name="blue_name">蓝色的</string>
+	<string name="pink_name">粉色的</string>
+	<string name="orange_name">橙色</string>
+	<string name="green_name">绿色</string>
+	<string name="yellow_name">黄色的</string>
+
+	<!-- help -->
+
+	<string name="ask_help">寻求帮助</string>
+	<string name="help">为您提供帮助：你在魔方学习活动中好吗？\n
+		如何使用立方体：\n
+		- 你可以在屏幕上看到 三 个不同的小方块 \n
+		- 他们永远不会改变，我称之为立方体。\n
+		- 如果您按下 F R U B L D 按钮，您将在 CUBE 中顺时针移动。\n
+		- 如果你看到一个带有 \' 的字母（如 F\'），这意味着 CUBE 的移动是逆时针方向的。\n
+		- 中心总是在多维数据集的同一个好地方。\n
+		- 如果你在图像上交换你旋转立方体而不修改立方体，我称之为 SWAP-CUBE。\n
+		- SWAP-CUBE 绘制在 BIG 图像中。\n
+		这意味着如果你必须旋转立方体然后做一个算法读取 pdf \n
+		你应该在 SWAP-CUBE 中看到 F R U B L D 的脸现在在哪里，然后根据按钮的颜色进行移动，始终指示脸部的中心。\n
+		辅助按钮：\n
+		在菜单中有 四 个按钮：\n
+		- 随机：它做 十 个随机动作 \n
+		- 重置：它将立方体颜色变回“清晰”的颜色。\n
+		- 保存：它让你保存你用于长期使用的最后一个立方体 \n
+		（如果您希望从此多维数据集重新启动，请在清理活动之前执行此操作）。\n
+		- 加载：它让你重新加载你保存的最后一个立方体。\n
+		如何学习：\n
+		在菜单中有“可视化 PDF”、“导入 PDF”和“编写算法”三个按钮，玩得开心 :3 \n
+		玩得开心学习和玩耍！\n
+	</string>
+
+</resources>
