@@ -12,7 +12,7 @@
 		android:layout_height="wrap_content"
 		android:text="@string/clockwiseText"
 		android:textColor="@color/white"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/switch_fontSize"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
@@ -20,71 +20,71 @@
 
 	<Button
 		android:id="@+id/buttonFront"
-		android:layout_width="@dimen/width"
-		android:layout_height="@dimen/height"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:layout_marginStart="4dp"
 		android:backgroundTint="@color/red"
 		android:text="@string/Front_letter"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/button_fontSize"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/buttonRight" />
 
 	<Button
 		android:id="@+id/buttonRight"
-		android:layout_width="@dimen/width"
-		android:layout_height="@dimen/height"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:backgroundTint="@color/blue"
 		android:text="@string/Right_letter"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/button_fontSize"
 		app:layout_constraintStart_toEndOf="@+id/buttonFront"
 		app:layout_constraintTop_toBottomOf="@+id/buttonUp" />
 
 	<Button
 		android:id="@+id/buttonUp"
-		android:layout_width="@dimen/width"
-		android:layout_height="@dimen/height"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:backgroundTint="@color/pink"
 		android:text="@string/Up_letter"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/button_fontSize"
 		app:layout_constraintEnd_toEndOf="@+id/buttonRight"
 		app:layout_constraintStart_toStartOf="@+id/buttonFront"
 		app:layout_constraintTop_toBottomOf="@+id/clockwiseSwitch" />
 
 	<Button
 		android:id="@+id/buttonDown"
-		android:layout_width="@dimen/width"
-		android:layout_height="@dimen/height"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:backgroundTint="@color/yellow"
 		android:text="@string/Down_letter"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/button_fontSize"
 		app:layout_constraintEnd_toEndOf="@+id/buttonBack"
 		app:layout_constraintStart_toStartOf="@+id/buttonLeft"
 		app:layout_constraintTop_toBottomOf="@+id/buttonUp" />
 
 	<Button
 		android:id="@+id/buttonLeft"
-		android:layout_width="@dimen/width"
-		android:layout_height="@dimen/height"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:backgroundTint="@color/green"
 		android:text="@string/Left_letter"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/button_fontSize"
 		app:layout_constraintBottom_toTopOf="@+id/buttonFront"
 		app:layout_constraintEnd_toStartOf="@+id/buttonBack"
 		app:layout_constraintTop_toTopOf="@+id/buttonUp" />
 
 	<Button
 		android:id="@+id/buttonBack"
-		android:layout_width="@dimen/width"
-		android:layout_height="@dimen/height"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:backgroundTint="@color/orange"
 		android:text="@string/Back_letter"
-		android:textSize="@dimen/bigFontSize"
+		android:textSize="@dimen/button_fontSize"
 		app:layout_constraintBottom_toTopOf="@+id/buttonFront"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toTopOf="@+id/buttonUp" />

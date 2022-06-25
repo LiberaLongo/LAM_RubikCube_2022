@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,6 @@ public class HomeFragment extends Fragment {
 	private static final String IS_SAVED = "isSaved";
 
 	private FragmentHomeBinding binding;
-
 	@SuppressLint("ClickableViewAccessibility")
 	public View onCreateView(@NonNull LayoutInflater inflater,
 							 ViewGroup container, Bundle savedInstanceState) {
@@ -57,9 +58,7 @@ public class HomeFragment extends Fragment {
 
 		//i check the bundle to understood if i have to create a new cube or reload it.
 		boolean isSaved = myFilesManager.is_saved(requireContext());
-		model.createCube(default_colors, false);
-
-		/*if(isSaved) {
+		if(isSaved) {
 			//i ask to reload the cube from the INTENT_FILENAME file.
 			Log.d(IS_SAVED, "loaded");
 			model.LOAD_CUBE(getContext(), myFilesManager.INTENT_FILENAME);
@@ -67,7 +66,7 @@ public class HomeFragment extends Fragment {
 		} else {
 			//i ask the model to set the default colors according to the resources colours.
 			model.createCube(default_colors, false);
-		}*/
+		}
 		model.set_Default_Colors(default_colors);
 
 		//and now observe cube
@@ -121,7 +120,7 @@ public class HomeFragment extends Fragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 
-		//myFilesManager.save_cube_backup(getContext());
+		myFilesManager.save_cube_backup(getContext());
 
 		binding = null;
 	}
@@ -155,6 +154,17 @@ public class HomeFragment extends Fragment {
 		Drawer.draw(image, cube, model.getSwapper(), true);
 	}
 
+	//menu stuff
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
+	@Override
+	public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+		// Do something that differs the Activity's menu here
+		super.onCreateOptionsMenu(menu, inflater);
+	}
 	@SuppressLint("NonConstantResourceId")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -163,10 +173,13 @@ public class HomeFragment extends Fragment {
 
 		//I save the model stuff NOW int the INTENT_FILENAME
 		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
-		//myFilesManager.save_cube_backup(getContext());
+		myFilesManager.save_cube_backup(getContext());
 
 		//array of colours for the cube
 		switch (item.getItemId()) {
+			//case R.id.activity_menu_item:
+			//not implemented here
+			//return false;
 			case R.id.random:
 				tvResult.setText(getString(R.string.random));
 				model.Random();

@@ -28,16 +28,15 @@
 	<string name="yellow_name">yellow</string>
 
 	<!-- dimensions -->
-
-	<dimen name="width">80dp</dimen>
-	<dimen name="height">80dp</dimen>
-	<dimen name="bigFontSize">40sp</dimen>
-	<dimen name="fontSize">20sp</dimen>
-	<dimen name="smallFontSize">15sp</dimen>
+	<dimen name="button_width">80dp</dimen>
+	<dimen name="button_height">80dp</dimen>
 	<dimen name="margin">10dp</dimen>
 
-	<dimen name="width_3D_image">0dp</dimen>
-	<dimen name="height_3D_image">0dp</dimen>
+	<!-- font dimensions -->
+	<dimen name="tv_fontSize">40sp</dimen>
+	<dimen name="switch_fontSize">20sp</dimen>
+	<dimen name="button_fontSize">50sp</dimen>
+	<dimen name="history_fontSize">30sp</dimen>
 
 	<!-- strings -->
 

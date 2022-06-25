@@ -6,9 +6,16 @@
 	android:layout_height="match_parent"
 	tools:context=".ui.HomeFragment">
 
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/guideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.5"/>
+
 	<TextView
 		android:id="@+id/textViewResult"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="@dimen/margin"
 		android:text="@string/hello"
@@ -16,7 +23,7 @@
 		android:textColor="@color/white"
 		android:textSize="@dimen/tv_fontSize"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline"
 		app:layout_constraintTop_toTopOf="parent" />
 
 	<ImageView
@@ -24,30 +31,32 @@
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:contentDescription="@string/cubes_visuals"
-		app:layout_constraintBottom_toTopOf="@+id/button_fragment"
-		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintHorizontal_bias="0.0"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0" />
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/button_fragment"
 		android:name="rubik_cube.cube.myButtonFragment"
-		android:layout_width="fill_parent"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		app:layout_constraintBottom_toTopOf="@+id/textViewHistory"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent" />
+		app:layout_constraintStart_toStartOf="@+id/guideline" />
 
 	<TextView
 		android:id="@+id/textViewHistory"
 		android:layout_width="0dp"
-		app:layout_constraintWidth_percent="0.8"
 		android:layout_height="0dp"
-		app:layout_constraintHeight_percent="0.1"
+		app:layout_constraintHeight_percent="0.2"
 		android:text="@string/history"
 		android:textColor="@color/white"
 		android:textSize="@dimen/history_fontSize"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintStart_toStartOf="parent" />
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

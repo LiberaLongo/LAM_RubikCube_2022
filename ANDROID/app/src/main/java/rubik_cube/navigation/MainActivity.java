@@ -1,11 +1,14 @@
 package rubik_cube.navigation;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import rubik_cube.cube.CubeViewModel;
+import rubik_cube.cube.myFilesManager;
 import rubik_cube.navigation.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,20 +28,19 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//my cube creation
-		int[] cube_colors = getResources().getIntArray(R.array.color_array);
-		CubeViewModel cube_model = new ViewModelProvider(this).get(CubeViewModel.class);
-		cube_model.createCube(cube_colors, false);
-
 		//navigation stuff
-
 		ActivityMainBinding binding =
 				ActivityMainBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
 		setSupportActionBar(binding.appBarMain.toolbar);
-		binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-				.setAction("Action", null).show());
+		binding.appBarMain.fab.setOnClickListener(view -> {
+			//"Replace with your own action"
+			Snackbar.make(view, "Save the Cube now", Snackbar.LENGTH_LONG)
+					.setAction("Action", null).show();
+			//my own action
+			myFilesManager.save_cube_backup(this);
+		});
 		DrawerLayout drawer = binding.drawerLayout;
 		NavigationView navigationView = binding.navView;
 		// Passing each menu ID as a set of Ids because each
@@ -57,6 +59,28 @@ public class MainActivity extends AppCompatActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.cube_menu, menu);
 		return true;
+	}
+
+	@SuppressLint("NonConstantResourceId")
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		String msg = "";
+		switch (item.getItemId()) {
+			//case R.id.activity_menu_item:
+				// Do Activity menu item stuff here
+				//return true;
+
+			//all this cases under are not implemented here!
+			//(i do only a log to see i passed from here)
+			case R.id.reset:  msg = "Reset"; break;
+			case R.id.random: msg = "Random"; break;
+			case R.id.save:   msg = "Save"; break;
+			case R.id.load:   msg = "Load"; break;
+			default:
+				break;
+		}
+		Log.d("SELECTED", msg);
+		return false;
 	}
 
 	@Override
