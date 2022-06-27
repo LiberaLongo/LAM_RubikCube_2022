@@ -30,5 +30,5 @@ public interface ICube {
 
 	//for save
 	int[][] onSave();
-	void onRestore(int[][] matrix);
+	int[] onRestore(int[][] matrix);
 }

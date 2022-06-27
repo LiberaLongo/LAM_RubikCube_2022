@@ -25,12 +25,10 @@ public class CubeViewModel extends ViewModel {
 	private boolean clockwise;
 	private SwapCube swapper;
 	private final Queue movesQueue;
-	private int[] default_colors;
 
 	//builder (only Android may call it when it want)
 	public CubeViewModel() {
 		this.mld_cube = null;
-		this.default_colors = null;
 		this.clockwise = true;
 		this.swapper = new SwapCube(50, 200, 200);
 		this.movesQueue = new Queue(10);
@@ -112,34 +110,11 @@ public class CubeViewModel extends ViewModel {
 		return this.movesQueue.toString();
 	}
 
-
-	//MY CHANGEABLE COLOURS
-	//color array get and set
-	public int[] get_Cube_Colors() {
-		int[] result = this.getCube().get_colors();
-		if(result == null)
-			return this.default_colors;
-		return result;
-	}
-	public void set_Default_Colors(int[] default_colors) {
-		this.default_colors = default_colors;
-		Cube cube = this.getCube();
-		cube.set_colors(default_colors);
-		this.mld_cube.setValue(cube);
-	}
-
-	//color index set
-	public void setCubeColorIndex(int index, int color) {
-		Cube cube = this.getCube();
-		cube.set_color_index(index, color);
-		this.mld_cube.setValue(cube);
-	}
-
-
 	//FILES MANAGING
 
 	//https://developer.android.com/topic/libraries/architecture/viewmodel#implement
-	public void LOAD_CUBE(Context context, String filename) {
+	public int[] LOAD_CUBE(Context context, String filename) {
+		int[] colors = null;
 		this.movesQueue.clear();
 		// Do an asynchronous operation to fetch cube.
 		try {
@@ -148,7 +123,7 @@ public class CubeViewModel extends ViewModel {
 			if(!str.equals("")) {
 				matrix = Cube.read_from_file(str);
 				Cube cube = new Cube();
-				cube.onRestore(matrix);
+				colors = cube.onRestore(matrix);
 				cube.setDefaultDrawers(SIZE);
 				cube.setLastMove(-1);
 				if(mld_cube == null)
@@ -158,6 +133,7 @@ public class CubeViewModel extends ViewModel {
 		} catch(IOError e) {
 			Log.e("Exception", "ERROR LOADING CUBE FROM FILE: " + e);
 		}
+		return colors;
 	}
 
 	public void SAVE_CUBE(Context context, String filename) {

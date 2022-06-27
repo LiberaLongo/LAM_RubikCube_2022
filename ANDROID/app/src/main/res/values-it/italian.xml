@@ -47,6 +47,9 @@
 	<string name="cubes_visuals">visuale cubo</string>
 	<string name="history">storico mosse</string>
 
+	<!-- floating action button strings -->
+	<string name="home_fab">Ora ho salvato il Cubo di Rubik</string>
+
 	<!-- non used -->
 
 	<string name="new_cube">nuovo cubo</string>

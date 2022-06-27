@@ -13,7 +13,6 @@
 		android:layout_marginHorizontal="@dimen/margin"
 		android:text="@string/hello"
 		android:textAlignment="center"
-		android:textColor="@color/white"
 		android:textSize="@dimen/tv_fontSize"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +44,6 @@
 		android:layout_height="0dp"
 		app:layout_constraintHeight_percent="0.1"
 		android:text="@string/history"
-		android:textColor="@color/white"
 		android:textSize="@dimen/history_fontSize"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />

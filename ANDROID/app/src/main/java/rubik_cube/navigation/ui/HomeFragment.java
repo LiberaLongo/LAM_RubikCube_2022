@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import rubik_cube.cube.ColorViewModel;
 import rubik_cube.cube.Cube;
 import rubik_cube.cube.CubeViewModel;
 import rubik_cube.cube.Drawer;
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
 	private static final String IS_SAVED = "isSaved";
 
 	private FragmentHomeBinding binding;
+
 	@SuppressLint("ClickableViewAccessibility")
 	public View onCreateView(@NonNull LayoutInflater inflater,
 							 ViewGroup container, Bundle savedInstanceState) {
@@ -53,61 +55,63 @@ public class HomeFragment extends Fragment {
 
 		ImageView image = binding.Image;
 
-		//MODEL
-		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+		//MODELS
+		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
 
 		//i check the bundle to understood if i have to create a new cube or reload it.
-		boolean isSaved = myFilesManager.is_saved(requireContext());
+		boolean isSaved = myFilesManager.is_saved(requireActivity());
 		if(isSaved) {
 			//i ask to reload the cube from the INTENT_FILENAME file.
 			Log.d(IS_SAVED, "loaded");
-			model.LOAD_CUBE(getContext(), myFilesManager.INTENT_FILENAME);
-			Toast.makeText(requireContext(), "loaded", Toast.LENGTH_SHORT).show();
+			int[] colors = cube_model.LOAD_CUBE(requireActivity(), myFilesManager.INTENT_FILENAME);
+			colour_model.set_Colors(colors);
+			Toast.makeText(requireActivity(), "loaded", Toast.LENGTH_SHORT).show();
 		} else {
 			//i ask the model to set the default colors according to the resources colours.
-			model.createCube(default_colors, false);
+			cube_model.createCube(default_colors, false);
+			colour_model.set_Default_Colors(default_colors);
 		}
-		model.set_Default_Colors(default_colors);
 
 		//and now observe cube
-		model.observeCube(this, cube -> {
+		cube_model.observeCube(this, cube -> {
 			int lastMove = cube.getLastMove();
 			Log.d("CUBE_OBSERVING", "i observed last move is " + lastMove);
 			if(lastMove >= 0) {
 				String text = "";
-				if (model.isClockwise()) text += " ";
+				if (cube_model.isClockwise()) text += " ";
 				else text += "'";
-				model.add_move_in_queue(letters[lastMove % 6] + text);
+				cube_model.add_move_in_queue(letters[lastMove % 6] + text);
 			}
 			updateUI(image, binding);
 		});
-		model.setSwapCube_SizeXY(50, 200, 250);
+		cube_model.setSwapCube_SizeXY(50, 200, 250);
 
 		//in order to swap the image
 		// in order to swipe and maybe fix this errors check this link:
 		// https://stackoverflow.com/questions/4139288/android-how-to-handle-right-to-left-swipe-gestures
-		image.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+		image.setOnTouchListener(new OnSwipeTouchListener(requireActivity()) {
 			//top and down have the same output except for the toast
 			@Override
 			public void onSwipeBottom() {
-				model.swapUpsideDown();
+				cube_model.swapUpsideDown();
 				updateUI(image, binding);
 			}
 			@Override
 			public void onSwipeTop() {
-				model.swapUpsideDown();
+				cube_model.swapUpsideDown();
 				updateUI(image, binding);
 			}
 
 			@Override
 			public void onSwipeLeft() {
-				model.swapLeft();
+				cube_model.swapLeft();
 				updateUI(image, binding);
 			}
 
 			@Override
 			public void onSwipeRight() {
-				model.swapRight();
+				cube_model.swapRight();
 				updateUI(image, binding);
 			}
 		});
@@ -120,7 +124,7 @@ public class HomeFragment extends Fragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 
-		myFilesManager.save_cube_backup(getContext());
+		myFilesManager.save_cube_backup(requireActivity());
 
 		binding = null;
 	}
@@ -151,7 +155,7 @@ public class HomeFragment extends Fragment {
 		tvHistory.setText(model.getQueueText(history));
 
 		//draw
-		Drawer.draw(image, cube, model.getSwapper(), true);
+		Drawer.draw(image, cube, model.getSwapper(), true, getResources().getConfiguration());
 	}
 
 	//menu stuff
@@ -173,7 +177,7 @@ public class HomeFragment extends Fragment {
 
 		//I save the model stuff NOW int the INTENT_FILENAME
 		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
-		myFilesManager.save_cube_backup(getContext());
+		myFilesManager.save_cube_backup(requireActivity());
 
 		//array of colours for the cube
 		switch (item.getItemId()) {
@@ -192,12 +196,12 @@ public class HomeFragment extends Fragment {
 				return true;
 			case R.id.save:
 				tvResult.setText(getString(R.string.save));
-				model.SAVE_CUBE(getContext(), myFilesManager.CUBE_FILENAME);
+				model.SAVE_CUBE(requireActivity(), myFilesManager.CUBE_FILENAME);
 				updateUI(image, binding);
 				return true;
 			case R.id.load:
 				tvResult.setText(getString(R.string.load));
-				model.LOAD_CUBE(getContext(), myFilesManager.CUBE_FILENAME);
+				model.LOAD_CUBE(requireActivity(), myFilesManager.CUBE_FILENAME);
 				updateUI(image, binding);
 				return true;
 

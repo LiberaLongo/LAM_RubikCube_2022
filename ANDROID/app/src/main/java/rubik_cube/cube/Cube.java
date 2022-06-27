@@ -18,9 +18,6 @@ public class Cube implements ICube {
 	private final Face F, R, U, L, B, D;
 	private DrawCube[] drawCubes;
 
-	//colors
-	int[] colors = null;
-
 	//it gives 0 as colour of all cards of all faces...
 	//the caller would probably onRestore after!
 	public Cube() {
@@ -34,7 +31,6 @@ public class Cube implements ICube {
 
 	public Cube(int[] colors)
 	{
-		this.colors = colors;
 		//Faces
 		this.F = new Face(colors[0]);
 		this.R = new Face(colors[1]);
@@ -44,20 +40,6 @@ public class Cube implements ICube {
 		this.D = new Face(colors[5]);
 		//Faces
 		this.Reset();
-	}
-
-	//colors stuff
-	public int[] get_colors() {
-		return this.colors;
-	}
-	public int get_color_index(int index) {
-		return this.colors[index];
-	}
-	public void set_colors(int[] colors) {
-		this.colors = colors;
-	}
-	public void set_color_index(int index, int color) {
-		this.colors[index] = color;
 	}
 	//CUBE STUFF
 
@@ -292,9 +274,9 @@ public class Cube implements ICube {
 		//DrawCube draw_3D_BLD = new DrawCube(size, false, false);
 		DrawCube draw_3D_BLD_cut = new DrawCube(size, false, false, true);
 		//choice the center of where draw the cube for his drawer.
-		draw_2D_cross.setXY(0, 0);
-		draw_3D_BLD_cut.setXY(225, 50);
-		draw_3D_FRU.setXY(330, 70);
+		draw_2D_cross.setXY(5, 0);
+		draw_3D_BLD_cut.setXY(230, 50);
+		draw_3D_FRU.setXY(335, 70);
 		//array of drawers
 		DrawCube[] drawCubes = {draw_2D_cross, draw_3D_FRU, draw_3D_BLD_cut};
 
@@ -367,7 +349,7 @@ public class Cube implements ICube {
 		savedCube[5] = this.D.onSave();
 		return savedCube;
 	}
-	public void onRestore(int[][] matrix) {
+	public int[] onRestore(int[][] matrix) {
 		int[] my_colors = new int[FACES_IN_A_CUBE];
 		my_colors[0] = this.F.onRestore(matrix[0]);
 		my_colors[1] = this.R.onRestore(matrix[1]);
@@ -375,6 +357,6 @@ public class Cube implements ICube {
 		my_colors[3] = this.B.onRestore(matrix[3]);
 		my_colors[4] = this.L.onRestore(matrix[4]);
 		my_colors[5] = this.D.onRestore(matrix[5]);
-		this.colors = my_colors;
+		return my_colors;
 	}
 }

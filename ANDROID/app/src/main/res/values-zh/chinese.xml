@@ -47,13 +47,13 @@
 	<string name="cubes_visuals">立方体视觉效果</string>
 	<string name="history">动作史</string>
 
+	<!-- floating action button strings -->
+	<string name="home_fab">现在我保存了魔方</string>
+
 	<!-- non used -->
 
 	<string name="default_colors">默认颜色</string>
 	<string name="new_cube">新立方体</string>
-
-	<dimen name="fontSize">40sp</dimen>
-	<dimen name="smallFontSize">30sp</dimen>
 
 	<!-- colors strings names -->
 

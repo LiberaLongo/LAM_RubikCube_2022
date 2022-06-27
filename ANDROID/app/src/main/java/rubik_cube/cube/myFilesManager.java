@@ -16,9 +16,9 @@ import java.io.OutputStreamWriter;
 
 public abstract class myFilesManager {
 
-	public static final String CUBE_FILENAME = "cube.txt";
-	public static final String WRITE_FILENAME = "write.txt";
-	public static final String INTENT_FILENAME = "intent.txt";
+	public static final String CUBE_FILENAME = "cube.txt"; //chosen by user
+	public static final String WRITE_FILENAME = "write.txt"; //algorithm
+	public static final String INTENT_FILENAME = "intent.txt"; //auto-saved
 
 	// https://stackoverflow.com/questions/14376807/read-write-string-from-to-a-file-in-android
 
@@ -84,6 +84,14 @@ public abstract class myFilesManager {
 	 * I save the model stuff NOW in the INTENT_FILENAME
 	 */
 	public static void save_cube_backup(Context context) {
+		//i save with model function
+		CubeViewModel model = new ViewModelProvider((ViewModelStoreOwner) context).get(CubeViewModel.class);
+		model.SAVE_CUBE(context, myFilesManager.INTENT_FILENAME);
+	}
+	/**
+	 * I save the model stuff NOW in the CUBE_FILENAME
+	 */
+	public static void save_cube_user(Context context) {
 		//i save with model function
 		CubeViewModel model = new ViewModelProvider((ViewModelStoreOwner) context).get(CubeViewModel.class);
 		model.SAVE_CUBE(context, myFilesManager.INTENT_FILENAME);
