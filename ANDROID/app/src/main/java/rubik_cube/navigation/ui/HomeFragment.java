@@ -26,6 +26,9 @@ import rubik_cube.cube.myFilesManager;
 import rubik_cube.navigation.R;
 import rubik_cube.navigation.databinding.FragmentHomeBinding;
 
+/**
+ * Where i draw the Rubik Cube and its fixed stuff
+ */
 public class HomeFragment extends Fragment {
 
 	private static final String IS_SAVED = "isSaved";

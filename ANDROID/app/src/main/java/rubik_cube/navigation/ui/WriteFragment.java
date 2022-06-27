@@ -1,66 +1,70 @@
 package rubik_cube.navigation.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import rubik_cube.cube.myFilesManager;
 import rubik_cube.navigation.R;
+import rubik_cube.navigation.databinding.FragmentWriteBinding;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link WriteFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Where the user write his algorithm to show in the visualizeFragment
  */
 public class WriteFragment extends Fragment {
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private FragmentWriteBinding binding;
 
 	public WriteFragment() {
 		// Required empty public constructor
 	}
 
-	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment using the provided parameters.
-	 *
-	 * @param param1 Parameter 1.
-	 * @param param2 Parameter 2.
-	 * @return A new instance of fragment WriteFragment.
-	 */
-	// TODO: Rename and change types and number of parameters
-	public static WriteFragment newInstance(String param1, String param2) {
-		WriteFragment fragment = new WriteFragment();
-		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
-		fragment.setArguments(args);
-		return fragment;
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
-		}
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_write, container, false);
+		//navigation stuff...
+		binding = FragmentWriteBinding.inflate(inflater, container, false);
+		View root = binding.getRoot();
+
+		//my stuff here
+
+		TextView tv = binding.textView;
+		EditText edit = binding.editText;
+
+		Button load = binding.load;
+		load.setOnClickListener(l -> {
+			String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity());
+			edit.setText(str);
+			tv.setText(getString(R.string.load));
+		});
+
+		Button save = binding.save;
+		save.setOnClickListener(l -> {
+			Editable str = edit.getText();
+			myFilesManager.WRITE(myFilesManager.WRITE_FILENAME, requireActivity(), String.valueOf(str));
+			tv.setText(getString(R.string.save));
+		});
+
+		return root;
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+
+		binding = null;
 	}
 }

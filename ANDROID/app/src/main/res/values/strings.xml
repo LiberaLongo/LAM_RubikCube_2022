@@ -20,6 +20,8 @@
 	<string name="cube_save">Save</string>
 	<string name="cube_load">Load</string>
 
+	<string name="write_hint">Write here</string>
+
 	<!-- floating action button strings -->
 	<string name="fab_description" translatable="false">FAB</string>
 	<string name="home_fab">Now i saved the Rubik Cube</string>

@@ -30,6 +30,8 @@
 	<string name="save">Salva</string>
 	<string name="load">Carica</string>
 
+	<string name="write_hint">Scrivi qui</string>
+
 	<string name="Front_letter">F</string>
 	<string name="Right_letter">R</string>
 	<string name="Up_letter">U</string>

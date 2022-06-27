@@ -33,6 +33,7 @@
 	<dimen name="margin">10dp</dimen>
 
 	<!-- font dimensions -->
+	<dimen name="fontSize">40sp</dimen>
 	<dimen name="tv_fontSize">40sp</dimen>
 	<dimen name="switch_fontSize">20sp</dimen>
 	<dimen name="button_fontSize">50sp</dimen>

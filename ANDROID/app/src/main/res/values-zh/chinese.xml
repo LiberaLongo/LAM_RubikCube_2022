@@ -30,6 +30,8 @@
 	<string name="save">节省</string>
 	<string name="load">加载</string>
 
+	<string name="write_hint">写在这里</string>
+
 	<string name="Front_letter">正</string>
 	<string name="Right_letter">右</string>
 	<string name="Up_letter">上</string>

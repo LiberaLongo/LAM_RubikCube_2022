@@ -16,10 +16,16 @@ public class SwapCube {
 		this.up_side_down = !this.up_side_down;
 	}
 	public void swapLeft() {
-		this.rotation = (this.rotation + 1) % 4;
+		if(up_side_down) //yellow up
+			this.rotation = (4 + this.rotation - 1) % 4;
+		else
+			this.rotation = (this.rotation + 1) % 4;
 	}
 	public void swapRight() {
-		this.rotation = (4 + this.rotation - 1) % 4;
+		if(up_side_down) //yellow up
+			this.rotation = (this.rotation + 1) % 4;
+		else
+			this.rotation = (4 + this.rotation - 1) % 4;
 	}
 	private Cube swapUpsideDown(Cube cube) {
 		Cube my_draw = cube.clone();
