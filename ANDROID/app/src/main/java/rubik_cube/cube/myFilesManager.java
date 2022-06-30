@@ -23,7 +23,7 @@ public abstract class myFilesManager {
 	// https://stackoverflow.com/questions/14376807/read-write-string-from-to-a-file-in-android
 
 	//FM09_DataManagement.pdf slide 20.
-	//FUNCTION TO WRITE A CUBE IN A FILE
+	//FUNCTION TO WRITE something IN A FILE
 	public static void WRITE(String filename, Context context, String to_write) {
 		try {
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
@@ -39,10 +39,10 @@ public abstract class myFilesManager {
 
 
 	//FM09_DataManagement.pdf slide 21.
-	//FUNCTION TO READ A CUBE FROM A FILE
+	//FUNCTION TO READ something FROM A FILE
 	public static String READ(String filename, Context context) {
 
-		String ret = "";
+		String ret = null;
 
 		try {
 			InputStream inputStream = context.openFileInput(filename);
@@ -84,14 +84,6 @@ public abstract class myFilesManager {
 	 * I save the model stuff NOW in the INTENT_FILENAME
 	 */
 	public static void save_cube_backup(Context context) {
-		//i save with model function
-		CubeViewModel model = new ViewModelProvider((ViewModelStoreOwner) context).get(CubeViewModel.class);
-		model.SAVE_CUBE(context, myFilesManager.INTENT_FILENAME);
-	}
-	/**
-	 * I save the model stuff NOW in the CUBE_FILENAME
-	 */
-	public static void save_cube_user(Context context) {
 		//i save with model function
 		CubeViewModel model = new ViewModelProvider((ViewModelStoreOwner) context).get(CubeViewModel.class);
 		model.SAVE_CUBE(context, myFilesManager.INTENT_FILENAME);

@@ -15,12 +15,17 @@
 	<string name="menu_send">Send and receive stuff</string>
 	<string name="menu_color">Change Colors</string>
 
-	<string name="cube_reset">Reset</string>
-	<string name="cube_random">Random</string>
+	<string name="write_hint">Write here</string>
+
+	<!-- save and load stuff -->
 	<string name="cube_save">Save</string>
 	<string name="cube_load">Load</string>
+	<string name="algorithm_save">Save algorithm</string>
+	<string name="algorithm_load">Load algorithm</string>
 
-	<string name="write_hint">Write here</string>
+	<!-- used for cube only -->
+	<string name="cube_reset">Reset</string>
+	<string name="cube_random">Random</string>
 
 	<!-- floating action button strings -->
 	<string name="fab_description" translatable="false">FAB</string>
@@ -67,4 +72,6 @@
 		- "angles third layer"   algorithm: F2 U R\' L F2 R L\' U F2 .\n
 		done!
 	</string>
+
+	<string name="action_settings" translatable="false">Settings</string>
 </resources>

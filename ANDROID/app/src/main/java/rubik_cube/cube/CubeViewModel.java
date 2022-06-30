@@ -120,7 +120,7 @@ public class CubeViewModel extends ViewModel {
 		try {
 			String str = myFilesManager.READ(filename, context);
 			int[][] matrix;
-			if(!str.equals("")) {
+			if(str != null) {
 				matrix = Cube.read_from_file(str);
 				Cube cube = new Cube();
 				colors = cube.onRestore(matrix);

@@ -11,10 +11,15 @@
 	<string name="menu_send">发送和接收</string>
 	<string name="menu_color">改变颜色</string>
 
+	<!-- save and load stuff -->
+	<string name="cube_save">保存</string>
+	<string name="cube_load">加载</string>
+	<string name="algorithm_save">保存算法</string>
+	<string name="algorithm_load">加载算法</string>
+
+	<!-- used for cube only -->
 	<string name="cube_reset">重置</string>
 	<string name="cube_random">随机的</string>
-	<string name="cube_save">节省</string>
-	<string name="cube_load">加载</string>
 
 	<!--cube.xml-->
 
@@ -24,11 +29,6 @@
 	<string name="anticlockwiseText">逆时针</string>
 
 	<string name="moveText">你 搬家了: </string>
-
-	<string name="random">随机化</string>
-	<string name="reset">重启</string>
-	<string name="save">节省</string>
-	<string name="load">加载</string>
 
 	<string name="write_hint">写在这里</string>
 

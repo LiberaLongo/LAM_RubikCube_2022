@@ -170,6 +170,7 @@ public class HomeFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 		// Do something that differs the Activity's menu here
+		inflater.inflate(R.menu.cube_menu, menu);
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 	@SuppressLint("NonConstantResourceId")
@@ -188,22 +189,22 @@ public class HomeFragment extends Fragment {
 			//not implemented here
 			//return false;
 			case R.id.random:
-				tvResult.setText(getString(R.string.random));
+				tvResult.setText(getString(R.string.cube_random));
 				model.Random();
 				updateUI(image, binding);
 				return true;
 			case R.id.reset:
-				tvResult.setText(getString(R.string.reset));
+				tvResult.setText(getString(R.string.cube_reset));
 				model.Reset();
 				updateUI(image, binding);
 				return true;
-			case R.id.save:
-				tvResult.setText(getString(R.string.save));
+			case R.id.cube_save:
+				tvResult.setText(getString(R.string.cube_save));
 				model.SAVE_CUBE(requireActivity(), myFilesManager.CUBE_FILENAME);
 				updateUI(image, binding);
 				return true;
-			case R.id.load:
-				tvResult.setText(getString(R.string.load));
+			case R.id.cube_load:
+				tvResult.setText(getString(R.string.cube_load));
 				model.LOAD_CUBE(requireActivity(), myFilesManager.CUBE_FILENAME);
 				updateUI(image, binding);
 				return true;

@@ -11,10 +11,16 @@
 	<string name="menu_send">Invia e Ricevi</string>
 	<string name="menu_color">Cambia Colori</string>
 
-	<string name="cube_reset">Resetta</string>
-	<string name="cube_random">Randomizza</string>
+	<!-- save and load stuff -->
 	<string name="cube_save">Salva</string>
 	<string name="cube_load">ri-Carica</string>
+	<string name="algorithm_save">Salva algoritmo</string>
+	<string name="algorithm_load">ri-Carica algoritmo</string>
+
+
+	<!-- used for cube only -->
+	<string name="cube_reset">Resetta</string>
+	<string name="cube_random">Randomizza</string>
 
 	<!-- cube.xml -->
 
@@ -24,11 +30,6 @@
 	<string name="anticlockwiseText">senso antiorario</string>
 
 	<string name="moveText">Hai mosso: </string>
-
-	<string name="random">Random</string>
-	<string name="reset">Resetta</string>
-	<string name="save">Salva</string>
-	<string name="load">Carica</string>
 
 	<string name="write_hint">Scrivi qui</string>
 

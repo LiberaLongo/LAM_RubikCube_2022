@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/write_save"
+		android:title="@string/algorithm_save"/>
+	<item
+		android:id="@+id/write_load"
+		android:title="@string/algorithm_load"/>
+</menu>

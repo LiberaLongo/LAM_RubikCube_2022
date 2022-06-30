@@ -15,19 +15,23 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-//import com.google.android.material.snackbar.Snackbar;
+
 import rubik_cube.navigation.databinding.ActivityMainBinding;
+
+//import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
 	private AppBarConfiguration mAppBarConfiguration;
+
+	private ActivityMainBinding binding;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		//navigation stuff
-		ActivityMainBinding binding =
+		this.binding =
 				ActivityMainBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
 
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.cube_menu, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -72,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
 			//(i do only a log to see i passed from here)
 			case R.id.reset:  msg = "Reset"; break;
 			case R.id.random: msg = "Random"; break;
-			case R.id.save:   msg = "Save"; break;
-			case R.id.load:   msg = "Load"; break;
+			case R.id.cube_save:   msg = "Save cube"; break;
+			case R.id.cube_load:   msg = "Load cube"; break;
+			case R.id.write_save:  msg = "Save algorithm"; break;
+			case R.id.write_load:  msg = "Load algorithm"; break;
 			default:
 				break;
 		}

@@ -62,11 +62,6 @@
 	<string name="Left_name">Left</string>
 	<string name="Down_name">Down</string>
 
-	<string name="random">Randomize</string>
-	<string name="reset">Reset</string>
-	<string name="save">Save</string>
-	<string name="load">Load</string>
-
 	<string name="cubes_visuals">cubes visuals</string>
 	<string name="history">history of moves</string>
 
