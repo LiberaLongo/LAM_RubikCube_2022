@@ -1,5 +1,7 @@
 package rubik_cube.cube;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
@@ -44,6 +46,12 @@ public class ColorViewModel extends ViewModel {
 		this.default_colors = default_colors;
 		this.mld_colors.setValue(default_colors);
 	}
+
+	// get the default colour with the cube is created or should return to
+	public int[] get_Default_Colors() {
+		return this.default_colors;
+	}
+
 	/** set the actual colors for the cube
 	 * @param colors actual colors for the cube
 	 */
@@ -64,12 +72,15 @@ public class ColorViewModel extends ViewModel {
 	}
 
 	/** change a colour in the index
-	 * @param index index of the face where u want to change colour
-	 * @param color new colour for the face
+	 * @param face_index index of the face where u want to change colour
+	 * @param color_index new colour for the face
 	 */
-	public void set_Color_Index(int index, int color) {
+	public void set_Color_Index(int face_index, int color_index) {
 		int[] previous_colors = getColors();
-		previous_colors[index] = color;
+		if((face_index >= 0 && face_index < 6) &&(color_index >= 0 && color_index < 6))
+			previous_colors[face_index] = default_colors[color_index];
+		else
+			Log.e("ERROR", "face_index = " + face_index + " or color_index = " + color_index + " out of bound");
 		this.mld_colors.setValue(previous_colors);
 	}
 }

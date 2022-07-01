@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:layout_marginHorizontal="@dimen/margin"
+	android:orientation="vertical"
 	tools:context=".ui.ColorFragment">
 
-	<!-- TODO: Update blank fragment layout -->
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:text="@string/menu_color" />
 
-</FrameLayout>
+	<Button
+		android:id="@+id/button_Default"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/black"
+		android:textColor="@color/white"
+		android:text="@string/default_colors"
+		android:textSize="@dimen/color_dimension" />
+
+	<Button
+		android:id="@+id/button_Front"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Front_name"
+		android:backgroundTint="@color/red"
+		android:textSize="@dimen/color_dimension" />
+
+	<Button
+		android:id="@+id/button_Right"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Right_name"
+		android:backgroundTint="@color/blue"
+		android:textSize="@dimen/color_dimension" />
+
+	<Button
+		android:id="@+id/button_Up"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Up_name"
+		android:backgroundTint="@color/pink"
+		android:textSize="@dimen/color_dimension"/>
+
+	<Button
+		android:id="@+id/button_Back"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Back_name"
+		android:backgroundTint="@color/orange"
+		android:textSize="@dimen/color_dimension" />
+
+	<Button
+		android:id="@+id/button_Left"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Left_name"
+		android:backgroundTint="@color/green"
+		android:textSize="@dimen/color_dimension" />
+
+	<Button
+		android:id="@+id/button_Down"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/Down_name"
+		android:backgroundTint="@color/yellow"
+		android:textSize="@dimen/color_dimension" />
+
+	<Button
+		android:id="@+id/button_Confirm"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/black"
+		android:textColor="@color/white"
+		android:text="@string/confirm"
+		android:textSize="@dimen/color_dimension" />
+</LinearLayout>

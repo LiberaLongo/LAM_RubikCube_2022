@@ -59,7 +59,6 @@ public class Cube_Fragment extends Fragment implements Interface_my_Fragment{
 
 		//MODELS
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
-		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
 
 		//clockwise or anticlockwise SWITCH
 		final String clockwiseText = (String) getResources().getText(R.string.clockwiseText);
@@ -79,18 +78,7 @@ public class Cube_Fragment extends Fragment implements Interface_my_Fragment{
 			clockwiseButton.setText(anticlockwiseText);
 
 		//i check if i have to create a NEW CUBE OR RELOAD it.
-		boolean isSaved = myFilesManager.is_saved(context);
-		if(isSaved) {
-			//i ask to reload the cube from the INTENT_FILENAME file.
-			Log.d(IS_SAVED, "loaded");
-			int[] colors = cube_model.LOAD_CUBE(context, myFilesManager.INTENT_FILENAME);
-			colour_model.set_Colors(colors);
-			Toast.makeText(requireActivity(), "loaded", Toast.LENGTH_SHORT).show();
-		} else {
-			//i ask the model to set the default colors according to the resources colours.
-			cube_model.createCube(default_colors, false);
-			colour_model.set_Default_Colors(default_colors);
-		}
+		this.checkCubeBackup();
 
 		//and now OBSERVE cube
 		cube_model.observeCube(this, cube -> {
@@ -142,10 +130,8 @@ public class Cube_Fragment extends Fragment implements Interface_my_Fragment{
 		super.onAttach(context);
 	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-
+	//i check if i have to create a NEW CUBE OR RELOAD it.
+	private void checkCubeBackup() {
 		//MODELS
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
@@ -162,6 +148,12 @@ public class Cube_Fragment extends Fragment implements Interface_my_Fragment{
 			cube_model.createCube(this.default_colors, false);
 			colour_model.set_Default_Colors(this.default_colors);
 		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		this.checkCubeBackup();
 	}
 
 	@Override

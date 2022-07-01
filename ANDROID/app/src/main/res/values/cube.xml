@@ -38,6 +38,7 @@
 	<dimen name="switch_fontSize">20sp</dimen>
 	<dimen name="button_fontSize">50sp</dimen>
 	<dimen name="history_fontSize">30sp</dimen>
+	<dimen name="color_dimension">48sp</dimen>
 
 	<!-- strings -->
 
@@ -67,6 +68,7 @@
 
 	<string name="new_cube">new cube</string>
 	<string name="default_colors">Default Colors</string>
+	<string name="confirm">Confirm</string>
 
 	<!-- help -->
 

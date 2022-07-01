@@ -51,6 +51,15 @@
 		<item>@string/Down_name</item>
 	</string-array>
 
+	<string-array name="colorName_array">
+		<item>@string/red_name</item>
+		<item>@string/blue_name</item>
+		<item>@string/pink_name</item>
+		<item>@string/orange_name</item>
+		<item>@string/green_name</item>
+		<item>@string/yellow_name</item>
+	</string-array>
+
 	<!-- ALGORITHM A STRATI txt summary -->
 	<!--look this link for the pdf version (i copied and summarized from it)\n
 	https://www.speedcubing.it/file/metodo_a_strati.pdf -->\

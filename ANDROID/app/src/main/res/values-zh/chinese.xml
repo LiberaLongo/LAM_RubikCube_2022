@@ -55,6 +55,7 @@
 	<!-- non used -->
 
 	<string name="default_colors">默认颜色</string>
+	<string name="confirm">确认</string>
 	<string name="new_cube">新立方体</string>
 
 	<!-- colors strings names -->

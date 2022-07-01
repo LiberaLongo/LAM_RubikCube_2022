@@ -1,66 +1,123 @@
 package rubik_cube.navigation.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import rubik_cube.cube.ColorViewModel;
+import rubik_cube.cube.CubeViewModel;
+import rubik_cube.cube.myFilesManager;
 import rubik_cube.navigation.R;
+import rubik_cube.navigation.databinding.FragmentColorBinding;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ColorFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Where the user write his algorithm to show in the visualizeFragment
  */
 public class ColorFragment extends Fragment {
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private FragmentColorBinding binding;
 
 	public ColorFragment() {
 		// Required empty public constructor
 	}
 
-	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment using the provided parameters.
-	 *
-	 * @param param1 Parameter 1.
-	 * @param param2 Parameter 2.
-	 * @return A new instance of fragment ColorFragment.
-	 */
-	// TODO: Rename and change types and number of parameters
-	public static ColorFragment newInstance(String param1, String param2) {
-		ColorFragment fragment = new ColorFragment();
-		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
-		fragment.setArguments(args);
-		return fragment;
-	}
-
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
-		}
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_color, container, false);
+		//navigation stuff...
+		binding = FragmentColorBinding.inflate(inflater, container, false);
+
+		//array of faces names
+		String[] faces = getResources().getStringArray(R.array.faceName_array);
+		String[] color_name = getResources().getStringArray(R.array.colorName_array);
+		int[] default_colors = getResources().getIntArray(R.array.color_array);
+		//BUTTONS
+		//default button
+		Button btn_default_colors = binding.buttonDefault;
+
+		//faces buttons
+		Button btnFront = binding.buttonFront;
+		Button btnRight = binding.buttonRight;
+		Button btnUp = binding.buttonUp;
+		Button btnBack = binding.buttonBack;
+		Button btnLeft = binding.buttonLeft;
+		Button btnDown = binding.buttonDown;
+
+		Button[] btnFaces = new Button[] {btnFront, btnRight, btnUp, btnBack, btnLeft, btnDown};
+
+		//confirm button
+		Button btn_Confirm = binding.buttonConfirm;
+
+		//MODEL for the COLOR
+		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
+
+		colour_model.set_Default_Colors(default_colors);
+
+		//BEHAVIOURS
+		//default color button behaviour
+		btn_default_colors.setOnClickListener(v -> {
+			//a message to the user to say i'm doing what him asked
+			String msg = requireActivity().getString(R.string.default_colors);
+			Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+			//set "current" colors to default ones
+			colour_model.resetColors();
+		});
+
+		//confirm button behaviour
+		btn_Confirm.setOnClickListener(v -> {
+			//a message to the user to say i'm doing what him asked
+			String msg = requireActivity().getString(R.string.confirm);
+			Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+			//create a new cube with "current" colors
+			cube_model.createCube(colour_model.getColors(), true);
+			//and save into a backup
+			myFilesManager.save_cube_backup(requireActivity());
+		});
+
+		//faces buttons behaviour
+		int DIM = 6;
+		for (int i = 0; i < DIM; i++) {
+			int face_choice = i;
+			btnFaces[i].setOnClickListener(v -> {
+				Toast.makeText(requireActivity(),
+						"you selected the " + face_choice + " button",
+						Toast.LENGTH_SHORT).show();
+
+				//FM12_navigation_architecture.pdf (slide 13)
+				//Dialog: AlertDialog with a list
+				final CharSequence[] items = getResources().getStringArray(R.array.colorName_array);
+				AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+				builder.setTitle("Pick a color");
+				builder.setSingleChoiceItems(items, -1, (dialog, color_index) -> {
+					String msg = faces[face_choice] + " becomes " + color_name[color_index] ;
+					Log.d("COLOR", "item = " + color_index +
+							", face_choice = " + face_choice + " (" + msg + ")");
+					Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+					colour_model.set_Color_Index(face_choice, color_index);
+					btnFaces[face_choice].setBackgroundColor(default_colors[color_index]);
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+			});
+		}
+
+		return binding.getRoot();
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+
+		binding = null;
 	}
 }
