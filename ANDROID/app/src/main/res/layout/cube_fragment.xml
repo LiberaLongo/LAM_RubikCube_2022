@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.HomeFragment">
+
+	<TextView
+		android:id="@+id/textViewResult"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/hello"
+		android:textAlignment="center"
+		android:textSize="@dimen/tv_fontSize"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ImageView
+		android:id="@+id/Image"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:contentDescription="@string/cubes_visuals"
+		app:layout_constraintBottom_toTopOf="@+id/clockwiseSwitch"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
+
+	<Switch
+		android:id="@+id/clockwiseSwitch"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/clockwiseText"
+		android:textSize="@dimen/switch_fontSize"
+		app:layout_constraintBottom_toTopOf="@+id/leftFragment"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/leftFragment"
+		android:name="rubik_cube.cube.buttons_FRU"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toTopOf="@+id/textViewHistory"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/rightFragment"
+		android:name="rubik_cube.cube.buttons_BLD"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toTopOf="@+id/textViewHistory"
+		app:layout_constraintEnd_toEndOf="parent" />
+
+	<TextView
+		android:id="@+id/textViewHistory"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintHeight_percent="0.1"
+		android:text="@string/history"
+		android:textSize="@dimen/history_fontSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

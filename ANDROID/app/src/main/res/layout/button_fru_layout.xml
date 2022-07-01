@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<Button
+		android:id="@+id/buttonFront"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:layout_marginStart="4dp"
+		android:backgroundTint="@color/red"
+		android:text="@string/Front_letter"
+		android:textSize="@dimen/button_fontSize"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/buttonRight" />
+
+	<Button
+		android:id="@+id/buttonRight"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:backgroundTint="@color/blue"
+		android:text="@string/Right_letter"
+		android:textSize="@dimen/button_fontSize"
+		app:layout_constraintStart_toEndOf="@+id/buttonFront"
+		app:layout_constraintTop_toBottomOf="@+id/buttonUp" />
+
+	<Button
+		android:id="@+id/buttonUp"
+		android:layout_width="@dimen/button_width"
+		android:layout_height="@dimen/button_height"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:backgroundTint="@color/pink"
+		android:text="@string/Up_letter"
+		android:textSize="@dimen/button_fontSize"
+		app:layout_constraintEnd_toEndOf="@+id/buttonRight"
+		app:layout_constraintStart_toStartOf="@+id/buttonFront"
+		app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

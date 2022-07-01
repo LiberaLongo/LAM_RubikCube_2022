@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
+import rubik_cube.cube.myFilesManager;
 import rubik_cube.navigation.databinding.ActivityMainBinding;
 
 //import com.google.android.material.snackbar.Snackbar;
@@ -92,5 +93,11 @@ public class MainActivity extends AppCompatActivity {
 		NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
 		return NavigationUI.navigateUp(navController, mAppBarConfiguration)
 				|| super.onSupportNavigateUp();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		myFilesManager.save_cube_backup(this);
 	}
 }

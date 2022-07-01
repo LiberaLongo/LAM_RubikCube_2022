@@ -22,6 +22,8 @@
 	<string name="cube_load">Load</string>
 	<string name="algorithm_save">Save algorithm</string>
 	<string name="algorithm_load">Load algorithm</string>
+	<string name="visualize_PDF" translatable="false">PDF</string>
+	<string name="visualize_TXT" translatable="false">TXT</string>
 
 	<!-- used for cube only -->
 	<string name="cube_reset">Reset</string>

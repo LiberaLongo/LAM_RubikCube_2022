@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.HomeFragment">
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/guidelineLeft"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.30"/>
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/guidelineRight"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.70"/>
+
+	<TextView
+		android:id="@+id/textViewResult"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:text="@string/hello"
+		android:textAlignment="center"
+		android:textSize="@dimen/tv_fontSize"
+		app:layout_constraintBottom_toTopOf="@+id/leftFragment"
+		app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ImageView
+		android:id="@+id/Image"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:contentDescription="@string/cubes_visuals"
+		app:layout_constraintBottom_toTopOf="@+id/clockwiseSwitch"
+		app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+		app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.0" />
+
+	<Switch
+		android:id="@+id/clockwiseSwitch"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/clockwiseText"
+		android:textSize="@dimen/switch_fontSize"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+		app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+		tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/leftFragment"
+		android:name="rubik_cube.cube.buttons_FRU"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/guidelineLeft"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/rightFragment"
+		android:name="rubik_cube.cube.buttons_BLD"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guidelineRight" />
+
+	<TextView
+		android:id="@+id/textViewHistory"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:text="@string/history"
+		android:textAlignment="center"
+		android:textSize="@dimen/history_fontSize"
+		app:layout_constraintBottom_toBottomOf="@id/rightFragment"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guidelineRight"
+		app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

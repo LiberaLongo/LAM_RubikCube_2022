@@ -31,7 +31,7 @@ public class CubeViewModel extends ViewModel {
 		this.mld_cube = null;
 		this.clockwise = true;
 		this.swapper = new SwapCube(50, 200, 200);
-		this.movesQueue = new Queue(10);
+		this.movesQueue = new Queue(26);
 	}
 
 	//OBSERVABLE STUFF

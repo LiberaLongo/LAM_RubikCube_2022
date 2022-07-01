@@ -29,7 +29,7 @@
 	<string name="clockwiseText">senso orario</string>
 	<string name="anticlockwiseText">senso antiorario</string>
 
-	<string name="moveText">Hai mosso: </string>
+	<string name="moveText">Hai mosso:</string>
 
 	<string name="write_hint">Scrivi qui</string>
 
