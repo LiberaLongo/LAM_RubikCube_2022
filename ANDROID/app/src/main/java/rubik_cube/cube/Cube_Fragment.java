@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import rubik_cube.navigation.R;
@@ -127,6 +128,31 @@ public class Cube_Fragment extends Fragment{
 		super.onAttach(context);
 	}
 
+	//i load the cube and restore colors and buttons colors
+	private void load(String filename) {
+		//MODELS
+		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
+		//restore the cube
+		int[] colors = cube_model.LOAD_CUBE(context, filename);
+		//restore the colors
+		colour_model.set_Colors(colors);
+		//update buttons colors
+		FragmentManager fm = getChildFragmentManager();
+		buttons_FRU frag_FRU = (buttons_FRU) fm.findFragmentById(R.id.leftFragment);
+		buttons_BLD frag_BLD = (buttons_BLD) fm.findFragmentById(R.id.rightFragment);
+		if (frag_FRU != null) {
+			frag_FRU.updateButtons(colors);
+		} else {
+			Log.d("FRAGMENT", "FRU fragment error");
+		}
+		if (frag_BLD != null) {
+			frag_BLD.updateButtons(colors);
+		} else {
+			Log.d("FRAGMENT", "BLD fragment error");
+		}
+	}
+
 	//i check if i have to create a NEW CUBE OR RELOAD it.
 	private void checkCubeBackup() {
 		//MODELS
@@ -137,8 +163,7 @@ public class Cube_Fragment extends Fragment{
 		if(isSaved) {
 			//i ask to reload the cube from the INTENT_FILENAME file.
 			Log.d(IS_SAVED, "loaded");
-			int[] colors = cube_model.LOAD_CUBE(context, myFilesManager.INTENT_FILENAME);
-			colour_model.set_Colors(colors);
+			this.load(myFilesManager.INTENT_FILENAME);
 			Toast.makeText(requireActivity(), "loaded", Toast.LENGTH_SHORT).show();
 		} else {
 			//i ask the model to set the default colors according to the resources colours.
@@ -230,7 +255,7 @@ public class Cube_Fragment extends Fragment{
 				return true;
 			case R.id.cube_load:
 				tvResult.setText(getString(R.string.cube_load));
-				model.LOAD_CUBE(context, myFilesManager.CUBE_FILENAME);
+				this.load(myFilesManager.CUBE_FILENAME);
 				updateUI(image);
 				return true;
 

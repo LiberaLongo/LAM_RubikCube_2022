@@ -3,6 +3,7 @@ package rubik_cube.cube;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import rubik_cube.navigation.R;
 
-public class buttons_BLD extends Fragment{
+public class buttons_BLD extends Fragment implements I_button_frag{
 
 	private final int DIM = 3;
+	private Button[] btnMoves;
 
 	public buttons_BLD () {}
 
@@ -41,7 +43,7 @@ public class buttons_BLD extends Fragment{
 		Button btnLeft = requireView().findViewById(R.id.buttonLeft);
 		Button btnDown = requireView().findViewById(R.id.buttonDown);
 
-		Button[] btnMoves = new Button[]{btnBack, btnLeft, btnDown};
+		this.btnMoves = new Button[]{btnBack, btnLeft, btnDown};
 
 		//MODELS
 		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
@@ -55,6 +57,15 @@ public class buttons_BLD extends Fragment{
 			//behaviour
 			btnMoves[i].setOnClickListener(v -> model.MOVE(DIM + finalI));
 		}
+	}
+	@Override
+	public void updateButtons(int[] colors) {
+		if(btnMoves != null)
+			for(int i = 0; i < this.DIM; i++) {
+				btnMoves[i].setBackgroundColor(colors[DIM + i]);
+			}
+		else
+			Log.d("ERROR", "button of moves not initialized");
 	}
 	@Override
 	public void onAttach(@NonNull Context context) {
