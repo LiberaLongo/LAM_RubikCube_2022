@@ -3,7 +3,6 @@ package rubik_cube.cube;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import rubik_cube.navigation.R;
 
-public class buttons_BLD extends Fragment implements Interface_my_Fragment{
+public class buttons_BLD extends Fragment{
 
-	private Button[] btnMoves;
 	private final int DIM = 3;
 
 	public buttons_BLD () {}
@@ -43,23 +41,20 @@ public class buttons_BLD extends Fragment implements Interface_my_Fragment{
 		Button btnLeft = requireView().findViewById(R.id.buttonLeft);
 		Button btnDown = requireView().findViewById(R.id.buttonDown);
 
-		this.btnMoves = new Button[] {btnBack, btnLeft, btnDown};
+		Button[] btnMoves = new Button[]{btnBack, btnLeft, btnDown};
 
+		//MODELS
 		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
 
+		//BEHAVIOUR
 		for (int i = 0; i < this.DIM; i++) {
 			int finalI = i;
-			btnMoves[i].setOnClickListener(v -> model.MOVE(this.DIM + finalI));
+			//color
+			btnMoves[i].setBackgroundColor(colour_model.get_color_index(DIM + i));
+			//behaviour
+			btnMoves[i].setOnClickListener(v -> model.MOVE(DIM + finalI));
 		}
-	}
-	@Override
-	public void updateButtons(int[] default_colors) {
-		if(btnMoves != null)
-			for(int i = 0; i < this.DIM; i++) {
-				btnMoves[i].setBackgroundColor(default_colors[i]);
-			}
-		else
-			Log.d("ERROR", "button of moves not initialized");
 	}
 	@Override
 	public void onAttach(@NonNull Context context) {

@@ -39,7 +39,7 @@ public class ColorFragment extends Fragment {
 		//array of faces names
 		String[] faces = getResources().getStringArray(R.array.faceName_array);
 		String[] color_name = getResources().getStringArray(R.array.colorName_array);
-		int[] default_colors = getResources().getIntArray(R.array.color_array);
+		final int[][] default_colors = {getResources().getIntArray(R.array.color_array)};
 		//BUTTONS
 		//default button
 		Button btn_default_colors = binding.buttonDefault;
@@ -61,7 +61,14 @@ public class ColorFragment extends Fragment {
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
 
-		colour_model.set_Default_Colors(default_colors);
+		//set default colors to resources ones
+		colour_model.set_Default_Colors(default_colors[0]);
+
+		int DIM = 6;
+		//colour the faces to the "current" color
+		for(int i = 0; i < DIM; i++) {
+			btnFaces[i].setBackgroundColor(colour_model.get_color_index(i));
+		}
 
 		//BEHAVIOURS
 		//default color button behaviour
@@ -71,6 +78,10 @@ public class ColorFragment extends Fragment {
 			Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
 			//set "current" colors to default ones
 			colour_model.resetColors();
+			//colour the faces to the "current" color
+			for(int i = 0; i < DIM; i++) {
+				btnFaces[i].setBackgroundColor(colour_model.get_color_index(i));
+			}
 		});
 
 		//confirm button behaviour
@@ -85,7 +96,6 @@ public class ColorFragment extends Fragment {
 		});
 
 		//faces buttons behaviour
-		int DIM = 6;
 		for (int i = 0; i < DIM; i++) {
 			int face_choice = i;
 			btnFaces[i].setOnClickListener(v -> {
@@ -99,12 +109,17 @@ public class ColorFragment extends Fragment {
 				AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 				builder.setTitle("Pick a color");
 				builder.setSingleChoiceItems(items, -1, (dialog, color_index) -> {
+					//for some reason when color_index = face_index and i already changed his value it not return back...
+					default_colors[0] = getResources().getIntArray(R.array.color_array);
+					//but why? it seem to be correct... isn't it?
+					int color = default_colors[0][color_index];
 					String msg = faces[face_choice] + " becomes " + color_name[color_index] ;
 					Log.d("COLOR", "item = " + color_index +
+							", color = " + color +
 							", face_choice = " + face_choice + " (" + msg + ")");
 					Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
-					colour_model.set_Color_Index(face_choice, color_index);
-					btnFaces[face_choice].setBackgroundColor(default_colors[color_index]);
+					colour_model.set_Color_Index(face_choice, color);
+					btnFaces[face_choice].setBackgroundColor(color);
 				});
 				AlertDialog alert = builder.create();
 				alert.show();

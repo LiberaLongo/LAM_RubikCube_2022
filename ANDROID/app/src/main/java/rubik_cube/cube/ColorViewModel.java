@@ -38,13 +38,21 @@ public class ColorViewModel extends ViewModel {
 	public int[] getColors() {
 		return Objects.requireNonNull(mld_colors.getValue());
 	}
+	public int get_color_index(int index) {
+		if(index >= 0 && index < 6) {
+			int[] colors = getColors();
+			return colors[index];
+		}
+		Log.d("COLOR ERROR", "index = " + index + " is out of bound.");
+		return -1;
+	}
 
 	/** set the default colour with the cube is created or should return to
 	 * @param default_colors colours picked from resources file
 	 */
 	public void set_Default_Colors(int[] default_colors) {
 		this.default_colors = default_colors;
-		this.mld_colors.setValue(default_colors);
+		//this.mld_colors.setValue(default_colors);
 	}
 
 	// get the default colour with the cube is created or should return to
@@ -68,19 +76,20 @@ public class ColorViewModel extends ViewModel {
 			this.set_Colors(this.default_colors);
 			return true;
 		}
+		Log.d("COLOR ERROR", "default colors is null");
 		return false;
 	}
 
 	/** change a colour in the index
 	 * @param face_index index of the face where u want to change colour
-	 * @param color_index new colour for the face
+	 * @param color new colour for the face
 	 */
-	public void set_Color_Index(int face_index, int color_index) {
+	public void set_Color_Index(int face_index, int color) {
 		int[] previous_colors = getColors();
-		if((face_index >= 0 && face_index < 6) &&(color_index >= 0 && color_index < 6))
-			previous_colors[face_index] = default_colors[color_index];
+		if((face_index >= 0 && face_index < 6))
+			previous_colors[face_index] = color;
 		else
-			Log.e("ERROR", "face_index = " + face_index + " or color_index = " + color_index + " out of bound");
+			Log.d("COLOR ERROR", "face_index = " + face_index + " out of bound, color = " + color);
 		this.mld_colors.setValue(previous_colors);
 	}
 }

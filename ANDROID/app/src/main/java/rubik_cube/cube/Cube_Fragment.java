@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import rubik_cube.navigation.R;
 
-public class Cube_Fragment extends Fragment implements Interface_my_Fragment{
+public class Cube_Fragment extends Fragment{
 
 	private static final String IS_SAVED = "IS_SAVED";
 	private boolean draw_fix_cube = true;
@@ -121,10 +121,7 @@ public class Cube_Fragment extends Fragment implements Interface_my_Fragment{
 			}
 		});
 	}
-	@Override
-	public void updateButtons(int[] default_colors) {
-		//TODO
-	}
+
 	@Override
 	public void onAttach(@NonNull Context context) {
 		super.onAttach(context);
