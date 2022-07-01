@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/linearLayout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_marginHorizontal="@dimen/margin"
+	android:orientation="vertical"
+	tools:context=".ui.ColorFragment">
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/guideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.5"/>
+
+
+	<Button
+		android:id="@+id/button_Default"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/black"
+		android:text="@string/default_colors"
+		android:textColor="@color/white"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<Button
+		android:id="@+id/button_Front"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/red"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/Front_name"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_Default" />
+
+	<Button
+		android:id="@+id/button_Right"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/blue"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/Right_name"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_Front" />
+
+	<Button
+		android:id="@+id/button_Up"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/pink"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/Up_name"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_Right" />
+
+	<Button
+		android:id="@+id/button_Back"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/orange"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/Back_name"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline"
+		app:layout_constraintTop_toBottomOf="@+id/button_Default" />
+
+	<Button
+		android:id="@+id/button_Left"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/green"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/Left_name"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline"
+		app:layout_constraintTop_toBottomOf="@+id/button_Back" />
+
+	<Button
+		android:id="@+id/button_Down"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/yellow"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:text="@string/Down_name"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline"
+		app:layout_constraintTop_toBottomOf="@+id/button_Left" />
+
+	<Button
+		android:id="@+id/button_Confirm"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:backgroundTint="@color/black"
+		android:text="@string/confirm"
+		android:textColor="@color/white"
+		android:textSize="@dimen/color_dimension_land"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button_Up" />
+</androidx.constraintlayout.widget.ConstraintLayout>

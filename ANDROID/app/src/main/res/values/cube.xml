@@ -39,6 +39,7 @@
 	<dimen name="button_fontSize">50sp</dimen>
 	<dimen name="history_fontSize">30sp</dimen>
 	<dimen name="color_dimension">48sp</dimen>
+	<dimen name="color_dimension_land">32sp</dimen>
 
 	<!-- strings -->
 
