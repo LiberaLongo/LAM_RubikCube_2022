@@ -2,6 +2,7 @@ package rubik_cube.cube;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
@@ -12,6 +13,8 @@ import androidx.lifecycle.ViewModel;
 
 import java.io.IOError;
 import java.util.Objects;
+
+//https://developer.android.com/topic/libraries/architecture/viewmodel#implement
 
 public class CubeViewModel extends ViewModel {
 
@@ -112,14 +115,16 @@ public class CubeViewModel extends ViewModel {
 
 	//FILES MANAGING
 
-	//https://developer.android.com/topic/libraries/architecture/viewmodel#implement
+	/** load a cube from the string of the cube
+	 * @return array of colors of center of the cube
+	 */
 	public int[] LOAD_CUBE(Context context, String filename) {
 		int[] colors = null;
 		this.movesQueue.clear();
 		// Do an asynchronous operation to fetch cube.
 		try {
-			String str = myFilesManager.READ(filename, context);
 			int[][] matrix;
+			String str = myFilesManager.READ(filename, context);
 			if(str != null) {
 				matrix = Cube.read_from_file(str);
 				Cube cube = new Cube();
@@ -136,13 +141,26 @@ public class CubeViewModel extends ViewModel {
 		return colors;
 	}
 
-	public void SAVE_CUBE(Context context, String filename) {
+	/**
+	 * @param context context of the file
+	 * @param filename where i have to write
+	 * @param string_cube null if
+	 */
+	public void SAVE_CUBE(Context context, String filename, String string_cube) {
 		this.movesQueue.clear();
-		//set last move to -1 so i can show "Save" and after updateUI() function.
-		Cube cube = getCube();
-		cube.setLastMove(-1);
-		myFilesManager.WRITE(filename, context, cube.toString());
-		mld_cube.setValue(cube);
+		//if i am sure i saved the cube from a cube, and not a "received message"
+		if(string_cube == null) {
+			Cube cube = getCube();
+			string_cube = cube.toString();
+			//set last move to -1 so i can show "Save" and after updateUI() function.
+			cube.setLastMove(-1);
+			mld_cube.setValue(cube);
+		} else {
+			String msg = "Warning! i'm not sure i 'received' a cube, the app may crash during load";
+			Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+		}
+		//write the to_string into file
+		myFilesManager.WRITE(filename, context, string_cube);
 	}
 
 	public void setSwapCube_SizeXY(float size, float x, float y) {

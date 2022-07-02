@@ -12,4 +12,7 @@
 	<item
 		android:id="@+id/cube_load"
 		android:title="@string/cube_load"/>
+	<item
+		android:id="@+id/challenge"
+		android:title="@string/challenge"/>
 </menu>

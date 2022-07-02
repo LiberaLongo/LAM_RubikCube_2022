@@ -248,13 +248,19 @@ public class Cube_Fragment extends Fragment{
 				return true;
 			case R.id.cube_save:
 				tvResult.setText(getString(R.string.cube_save));
-				model.SAVE_CUBE(context, myFilesManager.CUBE_FILENAME);
+				model.SAVE_CUBE(context, myFilesManager.CUBE_FILENAME, null);
 				updateUI(image);
 				return true;
 			case R.id.cube_load:
 				tvResult.setText(getString(R.string.cube_load));
 				this.load(myFilesManager.CUBE_FILENAME);
 				updateUI(image);
+				return true;
+			case R.id.challenge:
+				String msg = getString(R.string.challenge) + "\nunavailable";
+				tvResult.setText(msg);
+				//this.load(myFilesManager.CHALLENGE_FILENAME);
+				//updateUI(image);
 				return true;
 
 			default:

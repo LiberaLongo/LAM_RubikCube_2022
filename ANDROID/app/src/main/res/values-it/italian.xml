@@ -24,6 +24,7 @@
 	<string name="receive_txt">Ricevi TXT</string>
 	<string name="send_pdf">Invia PDF</string>
 	<string name="receive_pdf">Ricevi PDF</string>
+	<string name="challenge">carica la Sfida</string>
 
 	<!-- used for cube only -->
 	<string name="cube_reset">Resetta</string>
@@ -39,6 +40,7 @@
 	<string name="moveText">Hai mosso:</string>
 
 	<string name="write_hint">Scrivi qui</string>
+	<string name="copy_here_hint">Copia qui e premi uno dei tasti \"ricevi …\"</string>
 
 	<string name="Front_letter">F</string>
 	<string name="Right_letter">R</string>
@@ -56,9 +58,6 @@
 
 	<string name="cubes_visuals">visuale cubo</string>
 	<string name="history">storico mosse</string>
-
-	<!-- floating action button strings -->
-	<string name="home_fab">Ora ho salvato il Cubo di Rubik</string>
 
 	<!-- non used -->
 

@@ -9,8 +9,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import java.util.Objects;
-
 public class ColorViewModel extends ViewModel {
 
 	//mutable live data
@@ -36,12 +34,15 @@ public class ColorViewModel extends ViewModel {
 		return mld_colors;
 	}
 	public int[] getColors() {
-		return Objects.requireNonNull(mld_colors.getValue());
+		return mld_colors.getValue();
 	}
 	public int get_color_index(int index) {
 		if(index >= 0 && index < 6) {
 			int[] colors = getColors();
-			return colors[index];
+			if(colors != null)
+				return colors[index];
+			else
+				Log.d("COLOR ERROR", "returned null cube");
 		}
 		Log.d("COLOR ERROR", "index = " + index + " is out of bound.");
 		return -1;
@@ -69,15 +70,12 @@ public class ColorViewModel extends ViewModel {
 	}
 	/**
 	 * reset colors to the default colors
-	 * @return true if success, false otherwise
 	 */
-	public boolean resetColors() {
+	public void resetColors() {
 		if(default_colors != null) {
 			this.set_Colors(this.default_colors);
-			return true;
 		}
 		Log.d("COLOR ERROR", "default colors is null");
-		return false;
 	}
 
 	/** change a colour in the index

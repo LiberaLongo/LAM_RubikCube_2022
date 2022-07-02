@@ -24,6 +24,7 @@
 	<string name="receive_txt">收到 TXT</string>
 	<string name="send_pdf">发送 PDF</string>
 	<string name="receive_pdf">收到 PDF</string>
+	<string name="challenge">加载挑战</string>
 
 	<!-- used for cube only -->
 	<string name="cube_reset">重置</string>
@@ -39,6 +40,7 @@
 	<string name="moveText">你 搬家了: </string>
 
 	<string name="write_hint">写在这里</string>
+	<string name="copy_here_hint">复制到这里并按下其中一个键 \"收到 …\"</string>
 
 	<string name="Front_letter">正</string>
 	<string name="Right_letter">右</string>
@@ -56,9 +58,6 @@
 
 	<string name="cubes_visuals">立方体视觉效果</string>
 	<string name="history">动作史</string>
-
-	<!-- floating action button strings -->
-	<string name="home_fab">现在我保存了魔方</string>
 
 	<!-- non used -->
 

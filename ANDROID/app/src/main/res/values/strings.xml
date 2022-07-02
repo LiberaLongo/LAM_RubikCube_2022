@@ -19,6 +19,7 @@
 	<string name="menu_color">Change Colors</string>
 
 	<string name="write_hint">Write here</string>
+	<string name="copy_here_hint">Copy here then press one of\"receive …\" buttons</string>
 
 	<!-- save and load stuff -->
 	<string name="cube_save">Save</string>
@@ -27,6 +28,7 @@
 	<string name="algorithm_load">Load algorithm</string>
 	<string name="visualize_PDF" translatable="false">PDF</string>
 	<string name="visualize_TXT" translatable="false">TXT</string>
+	<string name="challenge">Load challenge</string>
 
 	<!-- send and receive stuff -->
 	<string name="send_cube">Send Cube</string>
@@ -36,14 +38,7 @@
 	<string name="send_pdf">Send PDF</string>
 	<string name="receive_pdf">Receive PDF</string>
 
-	<!-- used for cube only -->
-	<string name="cube_reset">Reset</string>
-	<string name="cube_random">Random</string>
-
-	<!-- floating action button strings -->
-	<string name="fab_description" translatable="false">FAB</string>
-	<string name="home_fab">Now i saved the Rubik Cube</string>
-
+	<!-- arrays -->
 	<string-array name="faceLetter_array">
 		<item>@string/Front_letter</item>
 		<item>@string/Right_letter</item>

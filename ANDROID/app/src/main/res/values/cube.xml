@@ -9,24 +9,9 @@
 	<string name="green_name">green</string>
 	<string name="yellow_name">yellow</string>
 
-	<!-- dimensions -->
-	<dimen name="button_width">80dp</dimen>
-	<dimen name="button_height">80dp</dimen>
-	<dimen name="margin">10dp</dimen>
-
-	<!-- font dimensions -->
-	<dimen name="fontSize">40sp</dimen>
-	<dimen name="tv_fontSize">40sp</dimen>
-	<dimen name="tv_fontSize_land">20sp</dimen>
-	<dimen name="switch_fontSize">20sp</dimen>
-	<dimen name="button_fontSize">50sp</dimen>
-	<dimen name="history_fontSize">30sp</dimen>
-	<dimen name="color_dimension">38sp</dimen>
-	<dimen name="color_dimension_land">30sp</dimen>
-	<dimen name="send_receive_dim">50sp</dimen>
-	<dimen name="send_receive_dim_land">46sp</dimen>
-
-	<!-- strings -->
+	<!-- strings used for cube only -->
+	<string name="cube_reset">Reset</string>
+	<string name="cube_random">Random</string>
 
     <string name="clockwiseText">clockwise</string>
 	<string name="anticlockwiseText">anticlockwise</string>
@@ -55,6 +40,7 @@
 	<string name="new_cube">new cube</string>
 	<string name="default_colors">Default Colors</string>
 	<string name="confirm">Confirm</string>
+
 	<!-- ALGORITHM A STRATI txt summary -->
 	<!--look this link for the pdf version (i copied and summarized from it)\n
 	https://www.speedcubing.it/file/metodo_a_strati.pdf -->\

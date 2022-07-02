@@ -19,6 +19,8 @@ public abstract class myFilesManager {
 	public static final String CUBE_FILENAME = "cube.txt"; //chosen by user
 	public static final String WRITE_FILENAME = "write.txt"; //algorithm
 	public static final String INTENT_FILENAME = "intent.txt"; //auto-saved
+	public static final String CHALLENGE_FILENAME = "challenge.txt"; //received from a message
+	public static final String PDF_FILENAME = "algorithm.pdf"; //PDF not supported yet
 
 	// https://stackoverflow.com/questions/14376807/read-write-string-from-to-a-file-in-android
 
@@ -86,6 +88,6 @@ public abstract class myFilesManager {
 	public static void save_cube_backup(Context context) {
 		//i save with model function
 		CubeViewModel model = new ViewModelProvider((ViewModelStoreOwner) context).get(CubeViewModel.class);
-		model.SAVE_CUBE(context, myFilesManager.INTENT_FILENAME);
+		model.SAVE_CUBE(context, myFilesManager.INTENT_FILENAME, null);
 	}
 }

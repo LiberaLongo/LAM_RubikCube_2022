@@ -4,5 +4,18 @@
 	<dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="nav_header_vertical_spacing">8dp</dimen>
 	<dimen name="nav_header_height">176dp</dimen>
-	<dimen name="fab_margin">16dp</dimen>
+
+	<!-- my dimensions -->
+	<dimen name="button_width">80dp</dimen>
+	<dimen name="button_height">80dp</dimen>
+	<dimen name="margin">10dp</dimen>
+
+	<!-- font dimensions -->
+	<dimen name="fontSize">40sp</dimen>
+	<dimen name="tv_fontSize">40sp</dimen>
+	<dimen name="switch_fontSize">20sp</dimen>
+	<dimen name="button_fontSize">50sp</dimen>
+	<dimen name="history_fontSize">30sp</dimen>
+	<dimen name="color_dimension">30sp</dimen>
+	<dimen name="send_receive_dim">40sp</dimen>
 </resources>

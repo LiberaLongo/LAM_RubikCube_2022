@@ -18,7 +18,18 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/hello"
-			android:textSize="@dimen/tv_fontSize_land" />
+			android:textSize="@dimen/tv_fontSize" />
+
+		<EditText
+			android:id="@+id/editText"
+			android:layout_width="match_parent"
+			android:layout_height="100dp"
+			android:autofillHints="@string/copy_here_hint"
+			android:ems="10"
+			android:gravity="start|top"
+			android:hint="@string/copy_here_hint"
+			android:inputType="textMultiLine"
+			tools:ignore="LabelFor" />
 
 		<Button
 			android:id="@+id/btn_send_cube"
