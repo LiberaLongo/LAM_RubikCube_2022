@@ -1,12 +1,11 @@
 package rubik_cube.navigation.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -20,7 +19,7 @@ import rubik_cube.navigation.R;
 import rubik_cube.navigation.databinding.FragmentColorBinding;
 
 /**
- * Where the user write his algorithm to show in the visualizeFragment
+ * Where the user can choose his cube colors
  */
 public class ColorFragment extends Fragment {
 
@@ -40,6 +39,9 @@ public class ColorFragment extends Fragment {
 		String[] faces = getResources().getStringArray(R.array.faceName_array);
 		String[] color_name = getResources().getStringArray(R.array.colorName_array);
 		final int[][] default_colors = {getResources().getIntArray(R.array.color_array)};
+
+		//where i show what user clicked
+		TextView tv = binding.textView;
 		//BUTTONS
 		//default button
 		Button btn_default_colors = binding.buttonDefault;
@@ -74,8 +76,7 @@ public class ColorFragment extends Fragment {
 		//default color button behaviour
 		btn_default_colors.setOnClickListener(v -> {
 			//a message to the user to say i'm doing what him asked
-			String msg = requireActivity().getString(R.string.default_colors);
-			Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+			tv.setText(requireActivity().getString(R.string.default_colors));
 			//set "current" colors to default ones
 			colour_model.resetColors();
 			//colour the faces to the "current" color
@@ -87,8 +88,7 @@ public class ColorFragment extends Fragment {
 		//confirm button behaviour
 		btn_Confirm.setOnClickListener(v -> {
 			//a message to the user to say i'm doing what him asked
-			String msg = requireActivity().getString(R.string.confirm);
-			Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+			tv.setText(requireActivity().getString(R.string.confirm));
 			//create a new cube with "current" colors
 			cube_model.createCube(colour_model.getColors(), true);
 			//and save into a backup
@@ -99,10 +99,6 @@ public class ColorFragment extends Fragment {
 		for (int i = 0; i < DIM; i++) {
 			int face_choice = i;
 			btnFaces[i].setOnClickListener(v -> {
-				Toast.makeText(requireActivity(),
-						"you selected the " + face_choice + " button",
-						Toast.LENGTH_SHORT).show();
-
 				//FM12_navigation_architecture.pdf (slide 13)
 				//Dialog: AlertDialog with a list
 				final CharSequence[] items = getResources().getStringArray(R.array.colorName_array);
@@ -114,10 +110,7 @@ public class ColorFragment extends Fragment {
 					//but why? it seem to be correct... isn't it?
 					int color = default_colors[0][color_index];
 					String msg = faces[face_choice] + " becomes " + color_name[color_index] ;
-					Log.d("COLOR", "item = " + color_index +
-							", color = " + color +
-							", face_choice = " + face_choice + " (" + msg + ")");
-					Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+					tv.setText(msg);
 					colour_model.set_Color_Index(face_choice, color);
 					btnFaces[face_choice].setBackgroundColor(color);
 				});

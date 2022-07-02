@@ -1,66 +1,88 @@
 package rubik_cube.navigation.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import rubik_cube.navigation.R;
+import rubik_cube.navigation.databinding.FragmentSendBinding;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link SendFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Where the user can send and receive cube and algorithm in txt, pdf.
  */
 public class SendFragment extends Fragment {
 
-	// TODO: Rename parameter arguments, choose names that match
-	// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-	private static final String ARG_PARAM1 = "param1";
-	private static final String ARG_PARAM2 = "param2";
-
-	// TODO: Rename and change types of parameters
-	private String mParam1;
-	private String mParam2;
+	private FragmentSendBinding binding;
 
 	public SendFragment() {
 		// Required empty public constructor
 	}
 
-	/**
-	 * Use this factory method to create a new instance of
-	 * this fragment using the provided parameters.
-	 *
-	 * @param param1 Parameter 1.
-	 * @param param2 Parameter 2.
-	 * @return A new instance of fragment SendFragment.
-	 */
-	// TODO: Rename and change types and number of parameters
-	public static SendFragment newInstance(String param1, String param2) {
-		SendFragment fragment = new SendFragment();
-		Bundle args = new Bundle();
-		args.putString(ARG_PARAM1, param1);
-		args.putString(ARG_PARAM2, param2);
-		fragment.setArguments(args);
-		return fragment;
-	}
-
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		if (getArguments() != null) {
-			mParam1 = getArguments().getString(ARG_PARAM1);
-			mParam2 = getArguments().getString(ARG_PARAM2);
-		}
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_send, container, false);
+		//navigation stuff...
+		binding = FragmentSendBinding.inflate(inflater, container, false);
+
+		//where i show what user clicked
+		TextView tv = binding.textView;
+		//SEND BUTTONS
+		Button send_cube = binding.btnSendCube;
+		Button send_txt = binding.btnSendTxt;
+		Button send_pdf = binding.btnSendPdf;
+		//RECEIVE BUTTONS
+		Button receive_cube = binding.btnReceiveCube;
+		Button receive_txt = binding.btnReceiveTxt;
+		Button receive_pdf = binding.btnReceivePdf;
+
+		//CUBE
+		send_cube.setOnClickListener(v -> {
+			//a message for the user
+			tv.setText(requireActivity().getString(R.string.send_cube));
+		});
+		receive_cube.setOnClickListener(v -> {
+			//a message for the user
+			tv.setText(requireActivity().getString(R.string.receive_cube));
+		});
+		//TXT
+		send_txt.setOnClickListener(v -> {
+			//a message for the user
+			tv.setText(requireActivity().getString(R.string.send_txt));
+		});
+		receive_txt.setOnClickListener(v -> {
+			//a message for the user
+			tv.setText(requireActivity().getString(R.string.receive_txt));
+		});
+		//PDF
+		send_pdf.setOnClickListener(v -> {
+			//a message for the user
+			tv.setText(requireActivity().getString(R.string.send_pdf));
+		});
+		receive_pdf.setOnClickListener(v -> {
+			//a message for the user
+			tv.setText(requireActivity().getString(R.string.receive_pdf));
+		});
+
+		return binding.getRoot();
+	}
+
+	private void send(String filename) {
+
+	}
+	private String receive(String filename) {
+		return "";
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+
+		binding = null;
 	}
 }

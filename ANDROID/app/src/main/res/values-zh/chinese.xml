@@ -17,6 +17,14 @@
 	<string name="algorithm_save">保存算法</string>
 	<string name="algorithm_load">加载算法</string>
 
+	<!-- send and receive stuff -->
+	<string name="send_cube">发送立方体</string>
+	<string name="receive_cube">收到立方体</string>
+	<string name="send_txt">发送 TXT</string>
+	<string name="receive_txt">收到 TXT</string>
+	<string name="send_pdf">发送 PDF</string>
+	<string name="receive_pdf">收到 PDF</string>
+
 	<!-- used for cube only -->
 	<string name="cube_reset">重置</string>
 	<string name="cube_random">随机的</string>
@@ -90,6 +98,8 @@
 		- 加载：它让你重新加载你保存的最后一个立方体。\n
 		如何学习：\n
 		在菜单中有“可视化 PDF”、“导入 PDF”和“编写算法”三个按钮，玩得开心 :3 \n
+		<!--如果您愿意，您还可以更改立方体颜色，以使它们适应现实生活中的立方体，\n
+		或以有趣的方式对其进行个性化…，但它可能会增加学习解决它的困难。\n-->
 		玩得开心学习和玩耍！\n
 	</string>
 

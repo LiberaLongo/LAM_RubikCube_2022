@@ -1,19 +1,15 @@
 package rubik_cube.navigation.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import rubik_cube.navigation.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HelpFragment#newInstance} factory method to
- * create an instance of this fragment.
+/** an Explanation on what user can do with this app
  */
 public class HelpFragment extends Fragment {
 

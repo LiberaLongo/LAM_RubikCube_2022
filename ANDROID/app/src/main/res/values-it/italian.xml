@@ -17,6 +17,13 @@
 	<string name="algorithm_save">Salva algoritmo</string>
 	<string name="algorithm_load">ri-Carica algoritmo</string>
 
+	<!-- send and receive stuff -->
+	<string name="send_cube">Invia Cubo</string>
+	<string name="receive_cube">Ricevi Cubo</string>
+	<string name="send_txt">Invia TXT</string>
+	<string name="receive_txt">Ricevi TXT</string>
+	<string name="send_pdf">Invia PDF</string>
+	<string name="receive_pdf">Ricevi PDF</string>
 
 	<!-- used for cube only -->
 	<string name="cube_reset">Resetta</string>
@@ -77,14 +84,15 @@
 		Come usare il cubo:\n
 		- Puoi vedere 3 diversi cubetti sullo schermo\n
 		- non cambiano mai e lo chiamo CUBE.\n
-		- Se si premono i pulsanti F R U B L D, si esegue uno SPOSTAMENTO in senso orario nel CUBO.\n
-		- Se vedi una lettera con \' dopo (come F\') significa che lo spostamento del CUBO è in senso antiorario.\n
+		- Se si premono i pulsanti F R U B L D, si esegue una MOSSA in senso orario nel CUBO.\n
+		- Se vedi una lettera con il carattere \' dopo (come F\') significa che la mossa del CUBO è in senso antiorario.\n
 		- Il centro è sempre nello stesso BUON posto nel CUBO.\n
-		- Se scambi l\'immagine RUOTA il cubo senza modificare il CUBE, lo chiamo SWAP-CUBE.\n
-		- lo SWAP-CUBE viene disegnato nell\'immagine BIG.\n
-		Ciò significa che se devi ROTARE il cubo, esegui un algoritmo letto in pdf\n
+		- Se swappi con il dito sull\'immagine RUOTA il cubo senza modificare il CUBE, lo chiamo SWAP-CUBE.\n
+		- lo SWAP-CUBE viene disegnato nell\'immagine GRANDE.\n
+		Ciò significa che se devi RUOTARE il cubo, eseguendo un algoritmo letto in pdf\n
 		dovresti vedere DOVE si trova la faccia F R U B L D in questo momento nello SWAP-CUBE,\n
-		quindi eseguire il MOVIMENTO in base al COLORE del PULSANTE, che indica SEMPRE il centro del viso.\n\n
+		quindi eseguire la MOSSA in base al COLORE del PULSANTE,\n
+		che indica SEMPRE il centro della faccia del cubo.\n\n
 
 		Pulsanti ausiliari:\n
 		nel menu ci sono 4 pulsanti:\n
@@ -94,8 +102,10 @@
 		(fallo prima di pulire l\'attivita\' se desideri ricominciare da questo cubo).\n
 		- Carica: ti permette di ricaricare l\'ultimo cubo che hai salvato.\n\n
 		Come imparare:\n
-		nel menu ci sono tre pulsanti "visualizza PDF", "importa PDF" e "scrivi il tuo algoritmo",\n
-		divertiti a provarli :3\n
+		nel "navigation drawer" ci sono tre pulsanti "visualizza Algoritmo", "importa PDF" e "scrivi il tuo algoritmo",\n
+		divertiti a provarli :3\n\n
+		<!--puoi inoltre anche CAMBIARE i COLORI del CUBO se preferisci, per adattarli a un cubo reale,\n
+		oppure per personalizzarlo in modo BUFFO… , ma questo potrebbe rendere l'apprendimento difficile.\n -->
 
 		divertiti imparando e giocando!
 	</string>

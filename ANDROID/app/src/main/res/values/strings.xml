@@ -1,4 +1,5 @@
 <resources>
+	<!-- app name and navigation "pre-made" stuff -->
 	<string name="app_name" translatable="false">Rubik Cube</string>
 	<string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
 	<string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
@@ -6,6 +7,8 @@
 	<string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
 	<string name="nav_header_desc" translatable="false">Navigation header</string>
 	<string name="actionbar" translatable="false">actionbar</string>
+
+	<!-- navigation names -->
 
 	<string name="menu_home">Home</string>
 	<string name="menu_help">Help</string>
@@ -24,6 +27,14 @@
 	<string name="algorithm_load">Load algorithm</string>
 	<string name="visualize_PDF" translatable="false">PDF</string>
 	<string name="visualize_TXT" translatable="false">TXT</string>
+
+	<!-- send and receive stuff -->
+	<string name="send_cube">Send Cube</string>
+	<string name="receive_cube">Receive Cube</string>
+	<string name="send_txt">Send TXT</string>
+	<string name="receive_txt">Receive TXT</string>
+	<string name="send_pdf">Send PDF</string>
+	<string name="receive_pdf">Receive PDF</string>
 
 	<!-- used for cube only -->
 	<string name="cube_reset">Reset</string>
@@ -60,29 +71,43 @@
 		<item>@string/yellow_name</item>
 	</string-array>
 
-	<!-- ALGORITHM A STRATI txt summary -->
-	<!--look this link for the pdf version (i copied and summarized from it)\n
-	https://www.speedcubing.it/file/metodo_a_strati.pdf -->\
-	<string name="algorithm" translatable="false">
-		Layered algorithm\n\n
-		0th step: know the cube F R U B L D faces.\n\n
-		FIRST LAYER:\n
-		- "white cross"\n
-		do a white cross with oriented edges of the cube.\n
-		tip: bring the edge at top oriented with it center and then bring it up.\n
-		- "the white vertices"\n
-		R U R\' U\' \n\n
-		SECOND LAYER:\n
-		put up-side-down so yellow is up\n
-		Left algorithm:  U\' L\' U\' L  U  F  U  F\' .\n
-		Right algorithm: U  R  U  R\' U\' F\' U\' F  .\n\n
-		THIRD LAYER:\n
-		- "yellow cross"         algorithm: F R U R\' U\' F\' . \n
-		- "yellow vertices"      algorithm: R U R\' U R U2 R\' .\n
-		- "vertices third layer" algorithm: R\' F R\' B2 R F\' R\' B2 R2 .\n
-		- "angles third layer"   algorithm: F2 U R\' L F2 R L\' U F2 .\n
-		done!
+	<!-- help -->
+
+	<string name="ask_help">ask help</string>
+	<string name="help">
+		Help for you:\n
+		You are in a Rubik Cube learning activity OK?\n\n
+
+		How to use the cube:\n
+		- You can see 3 different little cubes up in the screen\n
+		- them do not change never and i call this CUBE.\n
+		- If u press F R U B L D buttons u do a MOVE Clockwise in the CUBE.\n
+		- If u see a letter with \' after (like F\') that mean the move of the CUBE is ANTI-clockwise.\n
+		- Center are always at the same GOOD place in the CUBE.\n
+		- If u swap on the image u ROTATE the cube without modifying the CUBE, i call this SWAP-CUBE.\n
+		- the SWAP-CUBE is drawn in the BIG image.\n
+		That mean that if u have to ROTATE the cube then do an algorithm read in pdf\n
+		u should see WHERE the F R U B L D face is right now in the SWAP-CUBE,\n
+		then do the MOVE according to the COLOUR of the BUTTON,\n
+		that ALWAYS indicates the center of the face.\n\n
+
+		Auxiliary buttons:\n
+		in menu there are 4 buttons:\n
+		- Random: it do 10 random moves\n
+		- Reset: it colour the cube back to the "clear" one.\n
+		- Save: it let u save the last cube u used for long term uses\n
+		    (do it before u clean the activity if u wish to restart from this cube).\n
+		- Load: it let u re-load the last cube u saved.\n\n
+		<!--You can also CHANGE CUBE COLORS if u prefer it, to adapt them to a real-life cube,
+		or for personalize it in FUNNY ways…, but it may add difficulties to learning solving it.\n-->
+
+		How to learn:\n
+		in menu there are three buttons "visualize PDF", "import PDF" and "write your algorithm",\n
+		have fun trying them :3\n
+
+		have fun learning and playing!
 	</string>
+
 
 	<string name="action_settings" translatable="false">Settings</string>
 </resources>

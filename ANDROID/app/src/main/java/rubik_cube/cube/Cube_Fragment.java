@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -164,7 +163,6 @@ public class Cube_Fragment extends Fragment{
 			//i ask to reload the cube from the INTENT_FILENAME file.
 			Log.d(IS_SAVED, "loaded");
 			this.load(myFilesManager.INTENT_FILENAME);
-			Toast.makeText(requireActivity(), "loaded", Toast.LENGTH_SHORT).show();
 		} else {
 			//i ask the model to set the default colors according to the resources colours.
 			cube_model.createCube(this.default_colors, false);

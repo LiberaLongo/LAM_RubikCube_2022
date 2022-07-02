@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/linearLayout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.SendFragment">
+	android:orientation="vertical"
+	tools:context=".ui.ColorFragment">
 
-	<!-- TODO: Update blank fragment layout -->
-	<TextView
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:text="@string/menu_send" />
+		android:orientation="vertical"
+		android:layout_marginHorizontal="@dimen/margin">
 
-</FrameLayout>
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/hello"
+			android:textSize="@dimen/tv_fontSize_land" />
+
+		<Button
+			android:id="@+id/btn_send_cube"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/send_cube"
+			android:backgroundTint="@color/cube"
+			android:textSize="@dimen/send_receive_dim" />
+
+		<Button
+			android:id="@+id/btn_receive_cube"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/receive_cube"
+			android:backgroundTint="@color/cube"
+			android:textSize="@dimen/send_receive_dim" />
+
+		<Button
+			android:id="@+id/btn_send_txt"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/send_txt"
+			android:backgroundTint="@color/txt"
+			android:textSize="@dimen/send_receive_dim" />
+
+		<Button
+			android:id="@+id/btn_receive_txt"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/receive_txt"
+			android:backgroundTint="@color/txt"
+			android:textSize="@dimen/send_receive_dim" />
+
+		<Button
+			android:id="@+id/btn_send_pdf"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/send_pdf"
+			android:backgroundTint="@color/pdf"
+			android:textSize="@dimen/send_receive_dim" />
+
+		<Button
+			android:id="@+id/btn_receive_pdf"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/receive_pdf"
+			android:backgroundTint="@color/pdf"
+			android:textSize="@dimen/send_receive_dim" />
+	</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

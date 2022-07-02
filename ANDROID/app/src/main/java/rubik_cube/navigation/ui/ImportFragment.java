@@ -1,19 +1,16 @@
 package rubik_cube.navigation.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import rubik_cube.navigation.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ImportFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * where user can import algorithms from network
  */
 public class ImportFragment extends Fragment {
 
