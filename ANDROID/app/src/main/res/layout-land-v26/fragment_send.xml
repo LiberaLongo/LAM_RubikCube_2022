@@ -13,7 +13,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/hello"
-		android:textSize="@dimen/tv_fontSize"
+		android:autoSizeTextType="uniform"
 		android:layout_marginHorizontal="@dimen/margin"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
@@ -48,23 +48,23 @@
 				android:id="@+id/btn_send_cube"
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
-				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
+				android:layout_weight="1"
 				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/cube"
-				android:text="@string/send_cube" />
+				android:autoSizeTextType="uniform"
+				android:text="@string/send_cube"
+				android:textColor="@color/black"
+				android:backgroundTint="@color/cube" />
 
 			<Button
 				android:id="@+id/btn_receive_cube"
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
 				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/cube"
-				android:text="@string/receive_cube" />
+				android:autoSizeTextType="uniform"
+				android:text="@string/receive_cube"
+				android:textColor="@color/black"
+				android:backgroundTint="@color/cube"/>
 
 		</TableRow>
 
@@ -75,22 +75,22 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
 				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/txt"
-				android:text="@string/send_txt"/>
+				android:autoSizeTextType="uniform"
+				android:text="@string/send_txt"
+				android:textColor="@color/black"
+				android:backgroundTint="@color/txt" />
 
 			<Button
 				android:id="@+id/btn_receive_txt"
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
 				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/txt"
-				android:text="@string/receive_txt" />
+				android:autoSizeTextType="uniform"
+				android:text="@string/receive_txt"
+				android:textColor="@color/black"
+				android:backgroundTint="@color/txt" />
 
 		</TableRow>
 
@@ -101,22 +101,22 @@
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
+				android:autoSizeTextType="uniform"
 				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/pdf"
-				android:text="@string/send_pdf" />
+				android:text="@string/send_pdf"
+				android:textColor="@color/black"
+				android:backgroundTint="@color/pdf" />
 
 			<Button
 				android:id="@+id/btn_receive_pdf"
 				style="?android:attr/buttonBarButtonStyle"
 				android:layout_height="wrap_content"
 				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
 				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/pdf"
-				android:text="@string/receive_pdf" />
+				android:autoSizeTextType="uniform"
+				android:text="@string/receive_pdf"
+				android:textColor="@color/black"
+				android:backgroundTint="@color/pdf" />
 
 		</TableRow>
 	</TableLayout>

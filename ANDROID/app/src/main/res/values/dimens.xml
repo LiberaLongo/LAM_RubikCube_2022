@@ -12,10 +12,14 @@
 
 	<!-- font dimensions -->
 	<dimen name="fontSize">40sp</dimen>
+
 	<dimen name="tv_fontSize">40sp</dimen>
 	<dimen name="switch_fontSize">20sp</dimen>
 	<dimen name="button_fontSize">50sp</dimen>
 	<dimen name="history_fontSize">30sp</dimen>
 	<dimen name="color_dimension">30sp</dimen>
 	<dimen name="send_receive_dim">40sp</dimen>
+
+	<!-- auto_fit -->
+	<dimen name="auto_fit">1</dimen>
 </resources>

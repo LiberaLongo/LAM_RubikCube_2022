@@ -10,10 +10,14 @@
         <entry key="app/src/main/res/drawable/ic_send.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/ic_visualize.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land-v26/fragment_color.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land-v26/fragment_send.xml" value="0.1050228310502283" />
         <entry key="app/src/main/res/layout-land/cube_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout-land/fragment_color.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-land/fragment_color.xml" value="0.22" />
         <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-land/fragment_send.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-land/fragment_send.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-v26/fragment_color.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-v26/fragment_send.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bld_button.xml" value="0.18" />

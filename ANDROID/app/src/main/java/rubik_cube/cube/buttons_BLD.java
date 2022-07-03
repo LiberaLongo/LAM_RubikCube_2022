@@ -53,7 +53,9 @@ public class buttons_BLD extends Fragment implements I_button_frag{
 		for (int i = 0; i < this.DIM; i++) {
 			int finalI = i;
 			//color
-			btnMoves[i].setBackgroundColor(colour_model.get_color_index(DIM + i));
+			int colour = colour_model.get_color_index(DIM + i);
+			if(colour != +1)
+				btnMoves[i].setBackgroundColor(colour);
 			//behaviour
 			btnMoves[i].setOnClickListener(v -> model.MOVE(DIM + finalI));
 		}
