@@ -27,10 +27,12 @@ public class CubeViewModel extends ViewModel {
 	//stuff always recreated
 	private boolean clockwise;
 	private SwapCube swapper;
+	private String[] letters; //letters of the moves, stored in the queue
 	private final Queue movesQueue;
 
 	//builder (only Android may call it when it want)
 	public CubeViewModel() {
+		this.letters = null;
 		this.mld_cube = null;
 		this.clockwise = true;
 		this.swapper = new SwapCube(50, 200, 200);
@@ -41,7 +43,7 @@ public class CubeViewModel extends ViewModel {
 
 	//the cube
 	public void observeCube(@NonNull LifecycleOwner owner,
-							 @NonNull Observer<Cube> observer) {
+							@NonNull Observer<Cube> observer) {
 		getLiveDataCube().observe(owner, observer);
 	}
 	public LiveData<Cube> getLiveDataCube() {
@@ -81,7 +83,15 @@ public class CubeViewModel extends ViewModel {
 		this.movesQueue.clear();
 	}
 	public void MOVE(int move) {
+		//update the queue
+		String text = "";
+		if (this.clockwise) text += " ";
+		else text += "'";
+		this.add_move_in_queue(this.getLetter(move) + text);
+		//update the cube and notify observers
 		mld_cube.setValue(getCube().MOVE(move, this.clockwise));
+		//NOTE: if i update the cube first than the queue
+		// observers can't let the user seen the last move in the "history"
 	}
 	//clockwise
 	public boolean isClockwise() {
@@ -103,9 +113,25 @@ public class CubeViewModel extends ViewModel {
 	public SwapCube getSwapper() {
 		return this.swapper;
 	}
+	//the letters
+	private String getLetter(int index) {
+		String letter;
+		if(this.letters == null) //in case i haven't set them
+			//i choice the english letters "hardcoding" them.
+			this.letters = new String[] {"F", "R", "U", "B", "L", "D"};
+		letter = letters[index];
+		return letter;
+	}
 
+	/**
+	 * String[] letters = getResources().getStringArray(R.array.faceLetter_array);
+	 * @param letters array of string in order Front, Right, Up, Back, Left, Down.
+	 */
+	public void setLetters(String[] letters) {
+		this.letters = letters;
+	}
 	//the queue
-	public void add_move_in_queue(String str) {
+	private void add_move_in_queue(String str) {
 		this.movesQueue.enqueue(str);
 	}
 	public String getQueueText(String default_text) {

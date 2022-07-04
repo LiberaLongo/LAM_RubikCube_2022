@@ -58,8 +58,7 @@
 	<TextView
 		android:id="@+id/textViewHistory"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		app:layout_constraintHeight_percent="0.1"
+		android:layout_height="wrap_content"
 		android:text="@string/history"
 		android:textSize="@dimen/history_fontSize"
 		app:layout_constraintBottom_toBottomOf="parent"

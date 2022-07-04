@@ -52,13 +52,16 @@ public class Cube_Fragment extends Fragment{
 
 		//cube stuff
 		this.default_colors = getResources().getIntArray(R.array.color_array);
-		//text Views
-		String[] letters = getResources().getStringArray(R.array.faceLetter_array);
+
 		//the image where i have to draw the cube
 		ImageView image = requireView().findViewById(R.id.Image);
 
 		//MODELS
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+
+		//letters of "better fit" language for the history
+		String[] letters = getResources().getStringArray(R.array.faceLetter_array);
+		cube_model.setLetters(letters);
 
 		//clockwise or anticlockwise SWITCH
 		final String clockwiseText = (String) getResources().getText(R.string.clockwiseText);
@@ -82,14 +85,14 @@ public class Cube_Fragment extends Fragment{
 
 		//and now OBSERVE cube
 		cube_model.observeCube(this, cube -> {
+/*NOTE: do not do stuff that modify any content saved in the view model here
+ * because observe is called N+1 times since it was created here or in the color fragment
+ * with N number of times user use navigation buttons with the Navigation Drawer.
+ * i seen a post example that uses Kotlin here:
+ * https://raghunandan2005.medium.com/mistake-madeusing-livedata-with-fragment-and-viewmodel-1307b2bbe8c4
+ */
 			int lastMove = cube.getLastMove();
 			Log.d("CUBE_OBSERVING", "i observed last move is " + lastMove);
-			if(lastMove >= 0) {
-				String text = "";
-				if (cube_model.isClockwise()) text += " ";
-				else text += "'";
-				cube_model.add_move_in_queue(letters[lastMove % 6] + text);
-			}
 			updateUI(image);
 		});
 
