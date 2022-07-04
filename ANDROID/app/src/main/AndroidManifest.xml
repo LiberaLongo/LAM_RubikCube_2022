@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	package="rubik_cube.navigation">
+
+	<!-- permission to write in the external storage -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		tools:ignore="ScopedStorage" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 	<application
 		android:allowBackup="true"
+		android:requestLegacyExternalStorage="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
@@ -21,12 +28,25 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 
-			<!-- for sending and receiving from messaging apps -->
+			<!-- for sending to messaging apps -->
 			<intent-filter>
 				<action android:name="android.intent.action.SEND" />
 				<category android:name="android.intent.category.DEFAULT" />
 				<data android:mimeType="text/plain" />
+				<data android:mimeType="text/*"/>
 			</intent-filter>
+			<!-- for receiving from messaging apps -->
+			<intent-filter>
+				<action
+					android:name="android.intent.action.PICK"/>
+				<category
+					android:name="android.intent.category.DEFAULT"/>
+				<category
+					android:name="android.intent.category.OPENABLE"/>
+				<data android:mimeType="text/plain"/>
+				<data android:mimeType="text/*"/>
+			</intent-filter>
+
 		</activity>
 	</application>
 

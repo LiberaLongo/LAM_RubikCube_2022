@@ -67,7 +67,7 @@ public class WriteFragment extends Fragment {
 				tv.setText(getString(R.string.algorithm_save));
 				return true;
 			case R.id.write_load:
-				String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity());
+				String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity(), null);
 				edit.setText(str);
 				tv.setText(getString(R.string.algorithm_load));
 				return true;

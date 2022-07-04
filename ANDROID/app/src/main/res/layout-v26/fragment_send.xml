@@ -14,26 +14,26 @@
 		android:layout_marginHorizontal="@dimen/margin"
 		android:weightSum="9">
 
-		<TextView
-			android:id="@+id/textView"
+		<ScrollView
+			android:id="@+id/scrollView"
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
-			android:layout_weight="0.5"
-			android:autoSizeTextType="uniform"
-			android:text="@string/hello" />
+			android:layout_weight="3">
 
-		<EditText
-			android:id="@+id/editText"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="2.5"
-			android:autoSizeTextType="uniform"
-			android:autofillHints="@string/copy_here_hint"
-			android:ems="10"
-			android:gravity="start|top"
-			android:hint="@string/copy_here_hint"
-			android:inputType="textMultiLine"
-			tools:ignore="LabelFor" />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:id="@+id/textView"
+					android:text="@string/hello"
+					android:autoSizeTextType="uniform"
+					android:textColor="@color/white"
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent" />
+			</LinearLayout>
+		</ScrollView>
 
 		<Button
 			android:id="@+id/btn_send_cube"

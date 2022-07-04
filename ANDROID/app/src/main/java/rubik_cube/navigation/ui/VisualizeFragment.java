@@ -85,7 +85,7 @@ public class VisualizeFragment extends Fragment {
 			//not implemented here
 			//return false;
 			case R.id.txt:
-				String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity());
+				String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity(), null);
 				tv.setText(str);
 				return true;
 			case R.id.pdf:
