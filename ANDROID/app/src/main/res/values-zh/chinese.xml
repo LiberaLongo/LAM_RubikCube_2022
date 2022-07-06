@@ -104,4 +104,9 @@
 
 	<string name="send_to">发送至</string>
 
+	<!-- external files management (外部文件管理) -->
+	<string name="file_saved">文件保存成功</string>
+	<string name="error_read_external_file">读取外部文件出错</string>
+	<string name="error_write_external_file">写入外部文件出错</string>
+
 </resources>

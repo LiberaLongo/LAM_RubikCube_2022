@@ -107,4 +107,9 @@
 	<string name="action_settings" translatable="false">Settings</string>
 
 	<string name="send_to">send to</string>
+
+	<!-- external files management -->
+	<string name="file_saved">file saved successfully</string>
+	<string name="error_read_external_file">error read external file</string>
+	<string name="error_write_external_file">error write external file</string>
 </resources>

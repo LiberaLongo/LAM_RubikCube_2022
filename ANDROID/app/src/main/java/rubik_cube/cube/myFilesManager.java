@@ -43,24 +43,20 @@ public abstract class myFilesManager {
 
 	/**
 	 * //FM09_DataManagement.pdf slide 21.
-	 * //FUNCTION to READ the content of a FILE
+	 * //FUNCTION to READ the content of a FILE in INTERNAL STORAGE
 	 *
 	 * @param filename the file name i want to read
 	 * @param context the context the filename is saved
 	 *				* (most of times requireActivity() is called from a fragment)
-	 * @param extern null if intern a File object otherwise
 	 * @return the content of the file as a String
 	 */
-	public static String READ(String filename, Context context, File extern) {
+	public static String READ(String filename, Context context) {
 
 		String ret = null;
 
 		try {
 			InputStream inputStream;
-			if(extern == null) //then the file is INTERN and PRIVATE
 				inputStream = context.openFileInput(filename);
-			else //it is EXTERN
-				inputStream = new FileInputStream(extern);
 
 			if ( inputStream != null ) {
 				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

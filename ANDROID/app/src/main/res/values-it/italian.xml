@@ -110,4 +110,9 @@
 	</string>
 
 	<string name="send_to">invia a</string>
+
+	<!-- external files management -->
+	<string name="file_saved">file salvato correttamente</string>
+	<string name="error_read_external_file">errore in lettura del file extern</string>
+	<string name="error_write_external_file">errore in scrittura del file extern</string>
 </resources>

@@ -150,7 +150,7 @@ public class CubeViewModel extends ViewModel {
 		// Do an asynchronous operation to fetch cube.
 		try {
 			int[][] matrix;
-			String str = myFilesManager.READ(filename, context, null);
+			String str = myFilesManager.READ(filename, context);
 			if(str != null) {
 				matrix = Cube.read_from_file(str);
 				Cube cube = new Cube();

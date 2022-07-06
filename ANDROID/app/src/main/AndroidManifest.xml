@@ -28,26 +28,19 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 
-			<!-- for sending to messaging apps -->
-			<intent-filter>
-				<action android:name="android.intent.action.SEND" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<data android:mimeType="text/plain" />
-				<data android:mimeType="text/*"/>
-			</intent-filter>
-			<!-- for receiving from messaging apps -->
-			<intent-filter>
-				<action
-					android:name="android.intent.action.PICK"/>
-				<category
-					android:name="android.intent.category.DEFAULT"/>
-				<category
-					android:name="android.intent.category.OPENABLE"/>
-				<data android:mimeType="text/plain"/>
-				<data android:mimeType="text/*"/>
-			</intent-filter>
-
 		</activity>
+<!-- and also a provider -->
+		<provider
+			android:name="androidx.core.content.FileProvider"
+			android:authorities="${applicationId}.provider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/provider_paths" />
+		</provider>
+<!-- an opinion: too much stub code to send a simple file,
+		and most of the time it don't work! -->
 	</application>
 
 </manifest>
