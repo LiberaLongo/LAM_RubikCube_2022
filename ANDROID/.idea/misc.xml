@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/icon.xml" value="0.129" />
+        <entry key="app/src/main/res/drawable-v24/icon_round.xml" value="0.129" />
+        <entry key="app/src/main/res/drawable-v26/icon.xml" value="0.129" />
         <entry key="app/src/main/res/drawable/ic_help.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.105" />
         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.1" />
@@ -47,6 +50,7 @@
         <entry key="app/src/main/res/menu/visualize_menu.xml" value="0.178125" />
         <entry key="app/src/main/res/menu/write_menu.xml" value="0.19375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.109" />
+        <entry key="app/src/main/res/mipmap-xxxhdpi/icon_round.xml" value="0.129" />
         <entry key="app/src/main/res/xml/filepaths.xml" value="0.2062043795620438" />
         <entry key="app/src/main/res/xml/provider_paths.xml" value="0.178125" />
       </map>

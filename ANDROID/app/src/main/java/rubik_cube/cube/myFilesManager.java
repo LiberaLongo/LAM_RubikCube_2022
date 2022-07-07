@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +20,6 @@ public abstract class myFilesManager {
 	public static final String WRITE_FILENAME = "write.txt"; //algorithm
 	public static final String INTENT_FILENAME = "intent.txt"; //auto-saved
 	public static final String CHALLENGE_FILENAME = "challenge.txt"; //received from a message
-	public static final String PDF_FILENAME = "algorithm.pdf"; //PDF not supported yet
 
 	// https://stackoverflow.com/questions/14376807/read-write-string-from-to-a-file-in-android
 
@@ -73,9 +71,9 @@ public abstract class myFilesManager {
 			}
 		}
 		catch (FileNotFoundException e) {
-			Log.e("login activity", "File not found: " + e);
+			Log.e("FILE_MANAGER", "File not found: " + e);
 		} catch (IOException e) {
-			Log.e("login activity", "Can not read file: " + e);
+			Log.e("FILE_MANAGER", "Can not read file: " + e);
 		}
 
 		System.out.println("ret = " + ret);

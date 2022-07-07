@@ -19,10 +19,17 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
+import rubik_cube.cube.CubeViewModel;
 import rubik_cube.cube.myFilesManager;
 import rubik_cube.navigation.R;
 import rubik_cube.navigation.databinding.FragmentSendBinding;
@@ -42,7 +49,10 @@ public class SendFragment extends Fragment {
 	//filenames i wish to send and receive
 	private final String cube_filename = myFilesManager.CUBE_FILENAME; //txt with a cube
 	private final String txt_filename = myFilesManager.WRITE_FILENAME; //txt with an algorithm
-	private final String pdf_filename = myFilesManager.PDF_FILENAME;   //pdf
+	private final String pdf_filename = "algorithm.pdf";
+
+	private final String folder_explanation = "\n(*) usually in:" +
+			"\narchive -> internal memory\n-> ";
 
 	private final File sendPath = Environment.getExternalStoragePublicDirectory(
 			Environment.DIRECTORY_DOCUMENTS);
@@ -80,11 +90,17 @@ public class SendFragment extends Fragment {
 		Button receive_txt = binding.btnReceiveTxt;
 		Button receive_pdf = binding.btnReceivePdf;
 
+		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
+
 		//CUBE
 		send_cube.setOnClickListener(v -> {
 			//a message for the user
 			String text = requireActivity().getString(R.string.send_cube) + "\n";
+			//first i see if user saved something
 			String message = myFilesManager.READ(this.cube_filename, requireActivity());
+			if(message == null)
+				//if the user didn't save i get the cube message directly from model, the "ACTUAL" configuration.
+				message = cube_model.getCube().toString();
 			text +=	this.sendMessage(message, this.cube_filename, txt);
 			tv.setText(text);
 		});
@@ -137,22 +153,23 @@ public class SendFragment extends Fragment {
 
 		if(filenameIntern == null) filenameIntern = filenameExtern;
 
-		//File file = new File(this.requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString() + "/" + filenameExtern);
 		File file = new File(this.receivePath, filenameExtern);
 		if(file.exists()) {
 			try {
 				//read the extern file
-				String content = myFilesManager.READ(filenameExtern, requireActivity());
+				String content = readExternalStorage(file, filenameExtern);
+				System.out.println(content);
 				//now write in the internal file
 				myFilesManager.WRITE(filenameIntern, requireContext(), content);
 				result = "\n" + file + "\n" + content;
 			} catch (Exception e) {
-				Log.d("FILE", e.getMessage());
+				Log.d("FILE ERROR READING", e.getMessage());
 			}
 		} else {
-			result = "\nyou should save the file received in " + file;
-			result += "\nand it should be named " + filenameExtern + " in DOCUMENT directory";
-			result += "\nand retry pressing 'receive button' u pressed now";
+			result = "\nbefore receiving you should save the file received in \n" + file.getPath();
+			result += "\nand it should be named ''" + filenameExtern + "''\nin DOWNLOAD directory (*)";
+			result += "\nand retry pressing 'receive button' u pressed now\n";
+			result += folder_explanation + "Download -> " + filenameExtern + " -> DONE";
 		}
 		return result;
 	}
@@ -162,22 +179,43 @@ public class SendFragment extends Fragment {
 	 * @param filename the filename where i have to write the message
 	 */
 	private String sendMessage(String message, String filename, String type) {
-		File file = new File(this.sendPath, filename);
+		String res;
+		String folder_name = "rubik_cube";
+		File folder = new File(this.sendPath, folder_name);
+		if(folder.mkdir()) Log.i("FILE FOLDER", "mkdir true");
+		else Log.i("FILE FOLDER", "mkdir false");
+		File file = new File(folder, filename);
 		if (type.equals(txt))
 			//write the message in the external file
 			try {
+				// Create new file
+				// if it does not exist
+				if (file.createNewFile())
+					System.out.println("File created");
+				else
+					System.out.println("File already exists");
 				FileOutputStream outputStream = new FileOutputStream(file);
 				outputStream.write(message.getBytes());
 				outputStream.flush();
 				outputStream.close();
 				Log.d("FILE", file.toString());
 			} catch (Exception e) {
-				Log.d("FILE", e.getMessage());
+				Log.d("FILE ERROR WRITING", e.getMessage());
 			}
 
 		//now create the send intent
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TITLE, "Rubik Cube");
+		String text = "i send you a file called ''" + filename + "''";
+		text += "\nto save in Download folder (*) ";
+		text += "\n\nand then open from \nRubik Cube app \n-> left side 'menu'\n-> ";
+		text += getResources().getString(R.string.menu_send) + "\n-> ";
+		text += getResources().getString(R.string.receive_cube);
+		text += "\n\n(path = " + receivePath.getPath() + File.separator + filename + ")\n";
+		text += folder_explanation + "Download -> " + filename + " -> DONE";
+
+		sendIntent.putExtra(Intent.EXTRA_TEXT, text);
 		//if i had success in creating file
 		if (file.exists()) {
 			//uri stuff
@@ -187,7 +225,7 @@ public class SendFragment extends Fragment {
 			sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);// grant all three uri permissions!List<ResolveInfo> resInfoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 
 			requireActivity().grantUriPermission(
-					String.valueOf(this.sendPath), fileURI,
+					String.valueOf(file), fileURI,
 					Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 			sendIntent.putExtra(Intent.EXTRA_STREAM, fileURI);
@@ -197,9 +235,9 @@ public class SendFragment extends Fragment {
 				sendIntent.setType("application/pdf");
 
 		} else { //if i haven't success i try to send the plain text only
-			String extra_text = "I tried to send you a file called " + filename;
-			extra_text += "\nbut writing extern file failed ...\n" + message;
-			sendIntent.putExtra(Intent.EXTRA_TEXT, extra_text);
+			res = "I tried to send you a file called " + filename;
+			res += "\nbut writing extern file failed ...\n" + message;
+			sendIntent.putExtra(Intent.EXTRA_TEXT, res);
 			sendIntent.setType("text/plain");
 		}
 		// ... and start the intent
@@ -208,13 +246,44 @@ public class SendFragment extends Fragment {
 
 		//note: for some reason in my phone it is "Unsupported content"
 		String result = "\nIf u see a 'toast' under with \n' Unsupported content ' ";
-		result += "\nyou should see if there is a file called " + filename ;
-		result += "\nin the DOCUMENTS folder (*) of your telephone and send it";
-		result += "\nhis path should be:\n" + file;
-		result += "\n\n(*) from messaging app (in my test phone it is):";
-		result += "\n attach -> file -> internal archive -> archive -> internal memory";
-		result += " -> Documents -> " + filename + " -> done ";
+		result += "\nyou should see if there is a file called ''" + filename + "''";
+		result += "\nin the DOCUMENTS folder (*)\n of your telephone and send it";
+		result += "\nand in the subdirectory called " + folder_name;
+		result += "\n\nhis path should be:\n" + file + "\n";
+		result += folder_explanation + "Documents -> " + filename + " -> DONE";
 		return result;
+	}
+
+	private String readExternalStorage(File file, String name) {
+
+		String ret = null;
+
+		try {
+			InputStream inputStream;
+			inputStream = requireActivity().openFileInput(String.valueOf(new File(name)));
+
+			if ( inputStream != null ) {
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+				String receiveString;
+				StringBuilder stringBuilder = new StringBuilder();
+
+				while ( (receiveString = bufferedReader.readLine()) != null ) {
+					stringBuilder.append(receiveString).append("\n");
+				}
+
+				inputStream.close();
+				ret = stringBuilder.toString();
+			}
+		}
+		catch (FileNotFoundException e) {
+			Log.e("FILE_MANAGER", "File not found: " + e);
+		} catch (IOException e) {
+			Log.e("FILE_MANAGER", "Can not read file: " + e);
+		}
+
+		System.out.println("ret = " + ret);
+		return ret;
 	}
 
 	@Override

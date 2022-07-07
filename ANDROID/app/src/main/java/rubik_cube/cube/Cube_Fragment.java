@@ -260,8 +260,7 @@ public class Cube_Fragment extends Fragment{
 				updateUI(image);
 				return true;
 			case R.id.challenge:
-				String msg = getString(R.string.challenge) + "\nunavailable";
-				tvResult.setText(msg);
+				tvResult.setText(getString(R.string.challenge));
 				this.load(myFilesManager.CHALLENGE_FILENAME);
 				updateUI(image);
 				return true;
