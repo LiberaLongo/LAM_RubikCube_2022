@@ -21,13 +21,10 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import rubik_cube.cube.CubeViewModel;
 import rubik_cube.cube.myFilesManager;
@@ -157,7 +154,7 @@ public class SendFragment extends Fragment {
 		if(file.exists()) {
 			try {
 				//read the extern file
-				String content = readExternalStorage(file, filenameExtern);
+				String content = readExternalStorage(file);
 				System.out.println(content);
 				//now write in the internal file
 				myFilesManager.WRITE(filenameIntern, requireContext(), content);
@@ -254,36 +251,28 @@ public class SendFragment extends Fragment {
 		return result;
 	}
 
-	private String readExternalStorage(File file, String name) {
-
-		String ret = null;
-
+	private String readExternalStorage(File my_file) {
+		FileInputStream fis = null;
 		try {
-			InputStream inputStream;
-			inputStream = requireActivity().openFileInput(String.valueOf(new File(name)));
-
-			if ( inputStream != null ) {
-				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-				String receiveString;
-				StringBuilder stringBuilder = new StringBuilder();
-
-				while ( (receiveString = bufferedReader.readLine()) != null ) {
-					stringBuilder.append(receiveString).append("\n");
+			fis = new FileInputStream(my_file);
+			int i;
+			StringBuilder buffer = new StringBuilder();
+			while ((i = fis.read()) != -1) {
+				buffer.append((char) i);
+			}
+			return buffer.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-
-				inputStream.close();
-				ret = stringBuilder.toString();
 			}
 		}
-		catch (FileNotFoundException e) {
-			Log.e("FILE_MANAGER", "File not found: " + e);
-		} catch (IOException e) {
-			Log.e("FILE_MANAGER", "Can not read file: " + e);
-		}
-
-		System.out.println("ret = " + ret);
-		return ret;
+		return null;
 	}
 
 	@Override
