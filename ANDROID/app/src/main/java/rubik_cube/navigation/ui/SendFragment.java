@@ -146,7 +146,7 @@ public class SendFragment extends Fragment {
 	 */
 	private String receive(String filenameExtern, String filenameIntern) {
 		//result is true if ok a string otherwise
-		String result = "false";
+		String result;
 
 		if(filenameIntern == null) filenameIntern = filenameExtern;
 
@@ -160,7 +160,9 @@ public class SendFragment extends Fragment {
 				myFilesManager.WRITE(filenameIntern, requireContext(), content);
 				result = "\n" + file + "\n" + content;
 			} catch (Exception e) {
-				Log.d("FILE ERROR READING", e.getMessage());
+				String error = file.getAbsolutePath() +"\n" + e.getMessage();
+				result = "FILE ERROR RECEIVING\n" + error;
+				Log.d("FILE ERROR RECEIVING", error);
 			}
 		} else {
 			result = "\nbefore receiving you should save the file received in \n" + file.getPath();
@@ -176,7 +178,7 @@ public class SendFragment extends Fragment {
 	 * @param filename the filename where i have to write the message
 	 */
 	private String sendMessage(String message, String filename, String type) {
-		String res;
+		String text = "";
 		String folder_name = "rubik_cube";
 		File folder = new File(this.sendPath, folder_name);
 		if(folder.mkdir()) Log.i("FILE FOLDER", "mkdir true");
@@ -197,14 +199,16 @@ public class SendFragment extends Fragment {
 				outputStream.close();
 				Log.d("FILE", file.toString());
 			} catch (Exception e) {
-				Log.d("FILE ERROR WRITING", e.getMessage());
+				String error = file.getAbsolutePath() +"\n" + e.getMessage();
+				text += "FILE ERROR WRITING\n" + error;
+				Log.d("FILE ERROR WRITING", error);
 			}
 
 		//now create the send intent
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
 		sendIntent.putExtra(Intent.EXTRA_TITLE, "Rubik Cube");
-		String text = "i send you a file called ''" + filename + "''";
+		text += "i send you a file called ''" + filename + "''";
 		text += "\nto save in Download folder (*) ";
 		text += "\n\nand then open from \nRubik Cube app \n-> left side 'menu'\n-> ";
 		text += getResources().getString(R.string.menu_send) + "\n-> ";
@@ -232,9 +236,9 @@ public class SendFragment extends Fragment {
 				sendIntent.setType("application/pdf");
 
 		} else { //if i haven't success i try to send the plain text only
-			res = "I tried to send you a file called " + filename;
-			res += "\nbut writing extern file failed ...\n" + message;
-			sendIntent.putExtra(Intent.EXTRA_TEXT, res);
+			text = "I tried to send you a file called " + filename;
+			text += "\nbut writing extern file failed ...\n" + message;
+			sendIntent.putExtra(Intent.EXTRA_TEXT, text);
 			sendIntent.setType("text/plain");
 		}
 		// ... and start the intent
@@ -262,7 +266,12 @@ public class SendFragment extends Fragment {
 			}
 			return buffer.toString();
 		} catch (Exception e) {
+			String error = my_file.getAbsolutePath() ;
+			error += "\n error.getMessage() = " + e.getMessage();
+			String result = "FILE ERROR READING\n" + error;
+			Log.d("FILE ERROR READING", error);
 			e.printStackTrace();
+			return result;
 		} finally {
 			if (fis != null) {
 				try {
@@ -272,7 +281,6 @@ public class SendFragment extends Fragment {
 				}
 			}
 		}
-		return null;
 	}
 
 	@Override

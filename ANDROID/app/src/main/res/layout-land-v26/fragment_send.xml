@@ -25,7 +25,6 @@
 				android:id="@+id/textView"
 				android:text="@string/hello"
 				android:autoSizeTextType="uniform"
-				android:textColor="@color/white"
 				android:layout_height="wrap_content"
 				android:layout_width="match_parent" />
 		</LinearLayout>

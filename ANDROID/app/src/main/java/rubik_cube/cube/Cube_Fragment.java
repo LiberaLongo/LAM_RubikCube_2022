@@ -161,7 +161,7 @@ public class Cube_Fragment extends Fragment{
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 		ColorViewModel colour_model = new ViewModelProvider(requireActivity()).get(ColorViewModel.class);
 		//i check if i have to create a NEW CUBE OR RELOAD it.
-		boolean isSaved = myFilesManager.is_saved(context);
+		boolean isSaved = myFilesManager.is_saved(context, myFilesManager.INTENT_FILENAME);
 		if(isSaved) {
 			//i ask to reload the cube from the INTENT_FILENAME file.
 			Log.d(IS_SAVED, "loaded");

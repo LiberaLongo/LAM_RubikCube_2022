@@ -45,7 +45,7 @@ public class ColorViewModel extends ViewModel {
 				Log.d("COLOR ERROR", "returned null cube");
 		}
 		Log.d("COLOR ERROR", "index = " + index + " is out of bound.");
-		return -1;
+		return +1;
 	}
 
 	/** set the default colour with the cube is created or should return to
@@ -54,11 +54,6 @@ public class ColorViewModel extends ViewModel {
 	public void set_Default_Colors(int[] default_colors) {
 		this.default_colors = default_colors;
 		//this.mld_colors.setValue(default_colors);
-	}
-
-	// get the default colour with the cube is created or should return to
-	public int[] get_Default_Colors() {
-		return this.default_colors;
 	}
 
 	/** set the actual colors for the cube

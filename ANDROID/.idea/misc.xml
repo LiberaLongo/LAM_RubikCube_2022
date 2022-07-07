@@ -20,7 +20,7 @@
         <entry key="app/src/main/res/layout-land/cube_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout-land/fragment_color.xml" value="0.22" />
         <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-land/fragment_send.xml" value="0.12" />
+        <entry key="app/src/main/res/layout-land/fragment_send.xml" value="0.1" />
         <entry key="app/src/main/res/layout-v26/cube_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout-v26/fragment_color.xml" value="0.1" />
         <entry key="app/src/main/res/layout-v26/fragment_send.xml" value="0.1" />
@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/layout/fragment_color.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.13994565217391305" />
-        <entry key="app/src/main/res/layout/fragment_help.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_help.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_import.xml" value="0.1693840579710145" />
         <entry key="app/src/main/res/layout/fragment_send.xml" value="0.1" />

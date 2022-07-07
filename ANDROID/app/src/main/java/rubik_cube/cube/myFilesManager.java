@@ -2,6 +2,7 @@ package rubik_cube.cube;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -51,18 +52,19 @@ public abstract class myFilesManager {
 	public static String READ(String filename, Context context) {
 
 		String ret = null;
-
+		if(!is_saved(context, filename))
+			Toast.makeText(context, "file isn't saved then i can't load it", Toast.LENGTH_SHORT).show();
 		try {
 			InputStream inputStream;
-				inputStream = context.openFileInput(filename);
+			inputStream = context.openFileInput(filename);
 
-			if ( inputStream != null ) {
+			if (inputStream != null) {
 				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 				BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 				String receiveString;
 				StringBuilder stringBuilder = new StringBuilder();
 
-				while ( (receiveString = bufferedReader.readLine()) != null ) {
+				while ((receiveString = bufferedReader.readLine()) != null) {
 					stringBuilder.append(receiveString).append("\n");
 				}
 
@@ -75,7 +77,6 @@ public abstract class myFilesManager {
 		} catch (IOException e) {
 			Log.e("FILE_MANAGER", "Can not read file: " + e);
 		}
-
 		System.out.println("ret = " + ret);
 		return ret;
 	}
@@ -84,9 +85,9 @@ public abstract class myFilesManager {
 	 * I check if it is saved
 	 * @return if saved true else false
 	 */
-	public static boolean is_saved(Context context) {
+	public static boolean is_saved(Context context, String filename) {
 		File dir = context.getFilesDir();
-		File file = new File(dir, INTENT_FILENAME);
+		File file = new File(dir, filename);
 		return file.exists();
 	}
 	/**
