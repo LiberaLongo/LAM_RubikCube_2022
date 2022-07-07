@@ -150,7 +150,7 @@ public class SendFragment extends Fragment {
 
 		if(filenameIntern == null) filenameIntern = filenameExtern;
 
-		File file = new File(this.receivePath, filenameExtern);
+		File file = new File(this.receivePath, File.separator + filenameExtern);
 		if(file.exists()) {
 			try {
 				//read the extern file
