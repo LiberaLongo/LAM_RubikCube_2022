@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/default_web"
+		android:title="@string/default_web"/>
+	<item
+		android:id="@+id/default_pdf"
+		android:title="@string/default_pdf"/>
+	<item
+		android:id="@+id/import_web"
+		android:title="@string/import_web"/>
+	<item
+		android:id="@+id/import_pdf"
+		android:title="@string/import_pdf"/>
+</menu>

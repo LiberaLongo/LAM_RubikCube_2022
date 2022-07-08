@@ -84,11 +84,11 @@ public class VisualizeFragment extends Fragment {
 			//case R.id.activity_menu_item:
 			//not implemented here
 			//return false;
-			case R.id.txt:
+			case R.id.visualize_txt:
 				String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity());
 				tv.setText(str);
 				return true;
-			case R.id.pdf:
+			case R.id.visualize_pdf:
 				Toast.makeText(requireActivity(),
 						"sorry but the developer hasn't implemented pdf stuff yet",
 						Toast.LENGTH_SHORT).show();

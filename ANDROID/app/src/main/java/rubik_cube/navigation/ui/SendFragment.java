@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import rubik_cube.cube.CubeViewModel;
 import rubik_cube.cube.myFilesManager;
+import rubik_cube.cube.myWebLinks;
 import rubik_cube.navigation.R;
 import rubik_cube.navigation.databinding.FragmentSendBinding;
 
@@ -40,13 +41,10 @@ public class SendFragment extends Fragment {
 	private FragmentSendBinding binding;
 
 	//type of files i wish to send and receive
-	private static final String txt = ".txt";
-	private static final String pdf = ".pdf";
 
 	//filenames i wish to send and receive
 	private final String cube_filename = myFilesManager.CUBE_FILENAME; //txt with a cube
 	private final String txt_filename = myFilesManager.WRITE_FILENAME; //txt with an algorithm
-	private final String pdf_filename = "algorithm.pdf";
 
 	private final String folder_explanation = "\n(*) usually in:" +
 			"\narchive -> internal memory\n-> ";
@@ -85,7 +83,6 @@ public class SendFragment extends Fragment {
 		//RECEIVE BUTTONS
 		Button receive_cube = binding.btnReceiveCube;
 		Button receive_txt = binding.btnReceiveTxt;
-		Button receive_pdf = binding.btnReceivePdf;
 
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 
@@ -98,7 +95,7 @@ public class SendFragment extends Fragment {
 			if(message == null)
 				//if the user didn't save i get the cube message directly from model, the "ACTUAL" configuration.
 				message = cube_model.getCube().toString();
-			text +=	this.sendMessage(message, this.cube_filename, txt);
+			text +=	this.sendMessage(message, this.cube_filename);
 			tv.setText(text);
 		});
 		receive_cube.setOnClickListener(v -> {
@@ -112,7 +109,7 @@ public class SendFragment extends Fragment {
 			//a message for the user
 			String text = requireActivity().getString(R.string.send_txt) + "\n";
 			String message = myFilesManager.READ(this.txt_filename, requireActivity());
-			text +=	this.sendMessage(message, this.txt_filename, txt);
+			text +=	this.sendMessage(message, this.txt_filename);
 			tv.setText(text);
 		});
 		receive_txt.setOnClickListener(v -> {
@@ -122,17 +119,15 @@ public class SendFragment extends Fragment {
 			tv.setText(msg);
 		});
 		//PDF
+
+		//links model (get and set only)
+		myWebLinks links = new ViewModelProvider(requireActivity()).get(myWebLinks.class);
+
 		send_pdf.setOnClickListener(v -> {
 			//a message for the user
 			String text = requireActivity().getString(R.string.send_pdf) + "\n";
-			text +=	this.sendMessage("", this.pdf_filename, pdf);
+			text +=	this.sendPDF(links.get_my_URI());
 			tv.setText(text);
-		});
-		receive_pdf.setOnClickListener(v -> {
-			//a message for the user
-			String received = this.receive(this.pdf_filename, null);
-			String msg = requireActivity().getString(R.string.receive_pdf) + "\n" + received;
-			tv.setText(msg);
 		});
 
 		return binding.getRoot();
@@ -177,14 +172,13 @@ public class SendFragment extends Fragment {
 	 * @param message the message (got from internal files)
 	 * @param filename the filename where i have to write the message
 	 */
-	private String sendMessage(String message, String filename, String type) {
+	private String sendMessage(String message, String filename) {
 		String text = "";
 		String folder_name = "rubik_cube";
 		File folder = new File(this.sendPath, folder_name);
 		if(folder.mkdir()) Log.i("FILE FOLDER", "mkdir true");
 		else Log.i("FILE FOLDER", "mkdir false");
 		File file = new File(folder, filename);
-		if (type.equals(txt))
 			//write the message in the external file
 			try {
 				// Create new file
@@ -211,8 +205,7 @@ public class SendFragment extends Fragment {
 		text += "i send you a file called ''" + filename + "''";
 		text += "\nto save in Download folder (*) ";
 		text += "\n\nand then open from \nRubik Cube app \n-> left side 'menu'\n-> ";
-		text += getResources().getString(R.string.menu_send) + "\n-> ";
-		text += getResources().getString(R.string.receive_cube);
+		text += getResources().getString(R.string.menu_send);
 		text += "\n\n(path = " + receivePath.getPath() + File.separator + filename + ")\n";
 		text += folder_explanation + "Download -> " + filename + " -> DONE";
 
@@ -230,17 +223,13 @@ public class SendFragment extends Fragment {
 					Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 			sendIntent.putExtra(Intent.EXTRA_STREAM, fileURI);
-			if (type.equals(txt))
-				sendIntent.setType("text/plain");
-			else if (type.equals(pdf))
-				sendIntent.setType("application/pdf");
 
 		} else { //if i haven't success i try to send the plain text only
 			text = "I tried to send you a file called " + filename;
 			text += "\nbut writing extern file failed ...\n" + message;
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-			sendIntent.setType("text/plain");
 		}
+		sendIntent.setType("text/plain");
 		// ... and start the intent
 		startActivity(Intent.createChooser(sendIntent,
 				getResources().getText(R.string.send_to)));
@@ -253,6 +242,31 @@ public class SendFragment extends Fragment {
 		result += "\n\nhis path should be:\n" + file + "\n";
 		result += folder_explanation + "Documents -> " + filename + " -> DONE";
 		return result;
+	}
+
+	/**
+	 * @param uri of pdf
+	 */
+	private String sendPDF(String uri) {
+		String text = "";
+
+		//now create the send intent
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TITLE, "Rubik Cube");
+		text += "I tried to send you a link to a PDF algorithm of Rubik Cube";
+		text += "\nis URI is:\n\n" + uri;
+		text += "\n\nand then you can open from \nRubik Cube app \n-> left side 'menu'\n-> ";
+		text += getResources().getString(R.string.menu_import);
+
+		sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+		sendIntent.setType("text/plain");
+		// ... and start the intent
+		startActivity(Intent.createChooser(sendIntent,
+				getResources().getText(R.string.send_to)));
+
+		//in order to update the textView...
+		return "I tried to send a PDF with this uri:\t" + uri;
 	}
 
 	private String readExternalStorage(File my_file) {

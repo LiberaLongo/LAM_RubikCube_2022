@@ -3,8 +3,10 @@
 	<string name="app_name" translatable="false">Rubik Cube</string>
 	<string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
 	<string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-	<string name="nav_header_title" translatable="false">Android Studio</string>
-	<string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+	<string name="nav_header_title" translatable="false">Rubik Cube</string>
+	<string name="nav_header_subtitle" translatable="false">
+		Libera Longo\nlibera.longo@studio.unibo.it
+	</string>
 	<string name="nav_header_desc" translatable="false">Navigation header</string>
 	<string name="actionbar" translatable="false">actionbar</string>
 
@@ -107,6 +109,17 @@
 	<string name="action_settings" translatable="false">Settings</string>
 
 	<string name="send_to">send to</string>
+
+	<!-- import stuff -->
+	<string name="search_uri">Write URI here</string>
+	<string name="refresh">refresh</string>
+	<string name="download">download</string>
+	<string name="download_correct">file downloaded correctly</string>
+	<string name="search_uri_button" translatable="false">URI button</string>
+	<string name="default_web" translatable="false">WIKI HOW</string>
+	<string name="default_pdf" translatable="false">strata PDF</string>
+	<string name="import_web" translatable="false">import from web</string>
+	<string name="import_pdf" translatable="false">import from pdf</string>
 
 	<!-- external files management -->
 	<string name="file_saved">file saved successfully</string>

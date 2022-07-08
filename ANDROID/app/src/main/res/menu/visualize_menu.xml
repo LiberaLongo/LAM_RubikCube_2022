@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
-		android:id="@+id/txt"
+		android:id="@+id/visualize_txt"
 		android:title="@string/visualize_TXT"/>
 	<item
-		android:id="@+id/pdf"
+		android:id="@+id/visualize_pdf"
 		android:title="@string/visualize_PDF"/>
 </menu>

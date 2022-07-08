@@ -14,36 +14,36 @@
 	<fragment
 		android:id="@+id/nav_help"
 		android:name="rubik_cube.navigation.ui.HelpFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		android:label="@string/menu_help"
+		tools:layout="@layout/fragment_help" />
 
 	<fragment
 		android:id="@+id/nav_visualizeAlgorithm"
 		android:name="rubik_cube.navigation.ui.VisualizeFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		android:label="@string/menu_visualize"
+		tools:layout="@layout/fragment_visualize" />
 
 	<fragment
 		android:id="@+id/nav_writeAlgorithm"
 		android:name="rubik_cube.navigation.ui.WriteFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		android:label="@string/menu_write"
+		tools:layout="@layout/fragment_write" />
 
 	<fragment
 		android:id="@+id/nav_importAlgorithm"
 		android:name="rubik_cube.navigation.ui.ImportFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		android:label="@string/menu_import"
+		tools:layout="@layout/fragment_import" />
 
 	<fragment
 		android:id="@+id/nav_send"
 		android:name="rubik_cube.navigation.ui.SendFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		android:label="@string/menu_send"
+		tools:layout="@layout/fragment_send" />
 
 	<fragment
 		android:id="@+id/nav_color"
 		android:name="rubik_cube.navigation.ui.ColorFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		android:label="@string/menu_color"
+		tools:layout="@layout/fragment_color" />
 </navigation>

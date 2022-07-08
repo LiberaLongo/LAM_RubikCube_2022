@@ -5,20 +5,24 @@
 	<dimen name="nav_header_vertical_spacing">8dp</dimen>
 	<dimen name="nav_header_height">176dp</dimen>
 
+	<!-- navigation drawer image -->
+	<dimen name="image_width">130dp</dimen>
+
 	<!-- my dimensions -->
 	<dimen name="button_width">80dp</dimen>
 	<dimen name="button_height">80dp</dimen>
 	<dimen name="margin">10dp</dimen>
+	<dimen name="scroll_view_height">150dp</dimen>
 
 	<!-- font dimensions -->
 	<dimen name="fontSize">40sp</dimen>
 
-	<dimen name="tv_fontSize">40sp</dimen>
+	<dimen name="tv_fontSize">@dimen/fontSize</dimen>
 	<dimen name="switch_fontSize">20sp</dimen>
 	<dimen name="button_fontSize">50sp</dimen>
 	<dimen name="history_fontSize">30sp</dimen>
 	<dimen name="color_dimension">30sp</dimen>
-	<dimen name="send_receive_dim">40sp</dimen>
+	<dimen name="send_receive_dim">@dimen/fontSize</dimen>
 
 	<!-- auto_fit -->
 	<dimen name="auto_fit">1</dimen>

@@ -111,6 +111,12 @@
 
 	<string name="send_to">invia a</string>
 
+	<!-- import stuff -->
+	<string name="search_uri">Scrivi un URI qui</string>
+	<string name="refresh">refresh</string>
+	<string name="download">download</string>
+	<string name="download_correct">file download eseguito in modo corretto</string>
+
 	<!-- external files management -->
 	<string name="file_saved">file salvato correttamente</string>
 	<string name="error_read_external_file">errore in lettura del file extern</string>

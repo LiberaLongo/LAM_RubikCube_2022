@@ -11,7 +11,7 @@
 	<ScrollView
 		android:id="@+id/scrollView"
 		android:layout_width="match_parent"
-		android:layout_height="150dp"
+		android:layout_height="@dimen/scroll_view_height"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent">
@@ -104,17 +104,6 @@
 				android:layout_marginHorizontal="@dimen/margin"
 				android:backgroundTint="@color/pdf"
 				android:text="@string/send_pdf" />
-
-			<Button
-				android:id="@+id/btn_receive_pdf"
-				style="?android:attr/buttonBarButtonStyle"
-				android:layout_height="wrap_content"
-				android:layout_weight="@dimen/auto_fit"
-				android:textSize="@dimen/send_receive_dim"
-				android:textColor="@color/black"
-				android:layout_marginHorizontal="@dimen/margin"
-				android:backgroundTint="@color/pdf"
-				android:text="@string/receive_pdf" />
 
 		</TableRow>
 	</TableLayout>

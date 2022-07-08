@@ -12,7 +12,7 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical"
 		android:layout_marginHorizontal="@dimen/margin"
-		android:weightSum="9">
+		android:weightSum="8">
 
 		<ScrollView
 			android:id="@+id/scrollView"
@@ -77,15 +77,6 @@
 			android:layout_weight="@dimen/auto_fit"
 			android:autoSizeTextType="uniform"
 			android:text="@string/send_pdf"
-			android:backgroundTint="@color/pdf" />
-
-		<Button
-			android:id="@+id/btn_receive_pdf"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="@dimen/auto_fit"
-			android:autoSizeTextType="uniform"
-			android:text="@string/receive_pdf"
 			android:backgroundTint="@color/pdf" />
 	</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

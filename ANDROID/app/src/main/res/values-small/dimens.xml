@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- navigation drawer image -->
+	<dimen name="image_width">80dp</dimen>
+
+	<!-- my dimensions -->
+	<dimen name="button_width">50dp</dimen>
+	<dimen name="button_height">50dp</dimen>
+	<dimen name="margin">10dp</dimen>
+	<dimen name="scroll_view_height">80dp</dimen>
+
+	<!-- font dimensions -->
+	<dimen name="fontSize">26sp</dimen>
+	<dimen name="switch_fontSize">16sp</dimen>
+	<dimen name="button_fontSize">26sp</dimen>
+	<dimen name="history_fontSize">13sp</dimen>
+	<dimen name="color_dimension">16sp</dimen>
+	<dimen name="send_receive_dim">20sp</dimen>
+</resources>

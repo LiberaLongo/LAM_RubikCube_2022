@@ -1,118 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/linearLayout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:layout_marginHorizontal="@dimen/margin"
 	android:orientation="vertical"
-	tools:context=".ui.ColorFragment">
+	android:layout_marginHorizontal="@dimen/margin"
+	tools:context=".ui.ColorFragment"
+	android:weightSum="6" >
+
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="@dimen/auto_fit"
+		android:textSize="@dimen/color_dimension"
+		android:text="@string/hello"/>
+
+	<Button
+		android:id="@+id/button_Default"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="@dimen/auto_fit"
+		android:textSize="@dimen/color_dimension"
+		android:backgroundTint="@color/black"
+		android:textColor="@color/white"
+		android:text="@string/default_colors"/>
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:weightSum="6" >
-
-		<TextView
-			android:id="@+id/textView"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="@dimen/auto_fit"
-			android:textSize="@dimen/color_dimension"
-			android:text="@string/hello"/>
+		android:layout_height="0dp"
+		android:layout_weight="@dimen/auto_fit"
+		android:weightSum="2"
+		android:orientation="horizontal">
 
 		<Button
-			android:id="@+id/button_Default"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
+			android:id="@+id/button_Front"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
 			android:layout_weight="@dimen/auto_fit"
+			tools:ignore="NestedWeights"
+			android:backgroundTint="@color/red"
+			android:text="@string/Front_name"
 			android:textSize="@dimen/color_dimension"
-			android:backgroundTint="@color/black"
-			android:text="@string/default_colors"
-			android:textColor="@color/white" />
-
-		<TableLayout
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="3"
-			android:weightSum="2">
-
-			<TableRow>
-				<Button
-					android:id="@+id/button_Front"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/color_dimension"
-					android:layout_weight="@dimen/auto_fit"
-					android:text="@string/Front_name"
-					android:textColor="@color/black"
-					android:backgroundTint="@color/red"
-					style="?android:attr/buttonBarButtonStyle" />
-
-				<Button
-					android:id="@+id/button_Back"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/color_dimension"
-					android:layout_weight="@dimen/auto_fit"
-					android:text="@string/Back_name"
-					android:textColor="@color/black"
-					android:backgroundTint="@color/orange"
-					style="?android:attr/buttonBarButtonStyle" />
-			</TableRow>
-
-			<TableRow>
-				<Button
-					android:id="@+id/button_Right"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/color_dimension"
-					android:layout_weight="@dimen/auto_fit"
-					android:text="@string/Right_name"
-					android:textColor="@color/black"
-					android:backgroundTint="@color/blue"
-					style="?android:attr/buttonBarButtonStyle" />
-
-				<Button
-					android:id="@+id/button_Left"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/color_dimension"
-					android:layout_weight="@dimen/auto_fit"
-					android:text="@string/Left_name"
-					android:textColor="@color/black"
-					android:backgroundTint="@color/green"
-					style="?android:attr/buttonBarButtonStyle" />
-			</TableRow>
-
-			<TableRow>
-
-				<Button
-					android:id="@+id/button_Up"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/color_dimension"
-					android:layout_weight="@dimen/auto_fit"
-					android:text="@string/Up_name"
-					android:textColor="@color/black"
-					android:backgroundTint="@color/pink"
-					style="?android:attr/buttonBarButtonStyle" />
-				<Button
-					android:id="@+id/button_Down"
-					android:layout_height="wrap_content"
-					android:textSize="@dimen/color_dimension"
-					android:layout_weight="@dimen/auto_fit"
-					android:text="@string/Down_name"
-					android:textColor="@color/black"
-					android:backgroundTint="@color/yellow"
-					style="?android:attr/buttonBarButtonStyle" />
-			</TableRow>
-		</TableLayout>
+			android:textColor="@color/black"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_marginEnd="@dimen/margin" />
 
 		<Button
-			android:id="@+id/button_Confirm"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
+			android:id="@+id/button_Back"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
 			android:layout_weight="@dimen/auto_fit"
+			tools:ignore="NestedWeights"
+			android:backgroundTint="@color/orange"
+			android:text="@string/Back_name"
 			android:textSize="@dimen/color_dimension"
-			android:backgroundTint="@color/black"
-			android:text="@string/confirm"
-			android:textColor="@color/white" />
+			android:textColor="@color/black"
+			style="?android:attr/buttonBarButtonStyle"  />
 	</LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="@dimen/auto_fit"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/button_Right"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="@dimen/auto_fit"
+			tools:ignore="NestedWeights"
+			android:backgroundTint="@color/blue"
+			android:text="@string/Right_name"
+			android:textSize="@dimen/color_dimension"
+			android:textColor="@color/black"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_marginEnd="@dimen/margin" />
+
+		<Button
+			android:id="@+id/button_Left"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="@dimen/auto_fit"
+			tools:ignore="NestedWeights"
+			android:backgroundTint="@color/green"
+			android:text="@string/Left_name"
+			android:textSize="@dimen/color_dimension"
+			android:textColor="@color/black"
+			style="?android:attr/buttonBarButtonStyle"  />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="@dimen/auto_fit"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/button_Up"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="@dimen/auto_fit"
+			tools:ignore="NestedWeights"
+			android:backgroundTint="@color/pink"
+			android:text="@string/Up_name"
+			android:textSize="@dimen/color_dimension"
+			android:textColor="@color/black"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_marginEnd="@dimen/margin" />
+
+		<Button
+			android:id="@+id/button_Down"
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="@dimen/auto_fit"
+			tools:ignore="NestedWeights"
+			android:backgroundTint="@color/yellow"
+			android:text="@string/Down_name"
+			android:textSize="@dimen/color_dimension"
+			android:textColor="@color/black"
+			style="?android:attr/buttonBarButtonStyle"  />
+	</LinearLayout>
+
+	<Button
+		android:id="@+id/button_Confirm"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="@dimen/auto_fit"
+		android:textSize="@dimen/color_dimension"
+		android:backgroundTint="@color/black"
+		android:textColor="@color/white"
+		android:text="@string/confirm" />
+</LinearLayout>

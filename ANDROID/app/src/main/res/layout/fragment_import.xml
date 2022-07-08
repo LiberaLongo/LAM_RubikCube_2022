@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".ui.ImportFragment">
 
-	<!-- TODO: Update blank fragment layout -->
 	<TextView
+		android:id="@+id/textView"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:text="@string/menu_import" />
+		android:layout_height="wrap_content"
+		android:text="@string/menu_import"
+		android:layout_marginHorizontal="@dimen/margin"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+	<EditText
+		android:id="@+id/write_uri"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:autofillHints="@string/search_uri"
+		android:ems="10"
+		android:gravity="start|top"
+		android:hint="@string/search_uri"
+		android:inputType="textUri"
+		android:minHeight="48dp"
+		app:layout_constraintBottom_toTopOf="@+id/webView"
+		app:layout_constraintEnd_toStartOf="@+id/fab_URI"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView"
+		tools:ignore="LabelFor" />
+
+	<WebView
+		android:id="@+id/webView"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toTopOf="@+id/btn_refresh"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/fab_URI" >
+	</WebView>
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/fab_URI"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/margin"
+		android:layout_marginVertical="@dimen/margin"
+		android:layout_x="31dp"
+		android:layout_y="221dp"
+		android:contentDescription="@string/search_uri_button"
+		android:labelFor="@string/search_uri_button"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView"
+		app:srcCompat="@drawable/ic_search" />
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/guideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.5" />
+
+	<Button
+		android:id="@+id/btn_refresh"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/refresh"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/guideline"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<Button
+		android:id="@+id/button_download"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/download"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
