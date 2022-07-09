@@ -28,7 +28,7 @@
 	<string name="cube_load">Load</string>
 	<string name="algorithm_save">Save algorithm</string>
 	<string name="algorithm_load">Load algorithm</string>
-	<string name="visualize_PDF" translatable="false">PDF</string>
+	<string name="visualize_PDF" translatable="false">PDF (or web)</string>
 	<string name="visualize_TXT" translatable="false">TXT</string>
 	<string name="challenge">Load challenge</string>
 
@@ -111,15 +111,17 @@
 	<string name="send_to">send to</string>
 
 	<!-- import stuff -->
-	<string name="search_uri">Write URI here</string>
+	<string name="search_uri">Copy or write URI here</string>
 	<string name="refresh">refresh</string>
 	<string name="download">download</string>
 	<string name="download_correct">file downloaded correctly</string>
-	<string name="search_uri_button" translatable="false">URI button</string>
+	<string name="import_new">import new</string>
+	<string name="view_pdf">view pdf from extern app</string>
+
+	<string name="google" translatable="false">Google</string>
 	<string name="default_web" translatable="false">WIKI HOW</string>
 	<string name="default_pdf" translatable="false">strata PDF</string>
-	<string name="import_web" translatable="false">import from web</string>
-	<string name="import_pdf" translatable="false">import from pdf</string>
+	<string name="search_uri_button" translatable="false">URI button</string>
 
 	<!-- external files management -->
 	<string name="file_saved">file saved successfully</string>

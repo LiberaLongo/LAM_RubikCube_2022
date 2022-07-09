@@ -112,10 +112,12 @@
 	<string name="send_to">invia a</string>
 
 	<!-- import stuff -->
-	<string name="search_uri">Scrivi un URI qui</string>
+	<string name="search_uri">Copia o scrivi un URI qui</string>
 	<string name="refresh">refresh</string>
 	<string name="download">download</string>
 	<string name="download_correct">file download eseguito in modo corretto</string>
+	<string name="import_new">importa nuovo</string>
+	<string name="view_pdf">vedi pdf da un app esterna</string>
 
 	<!-- external files management -->
 	<string name="file_saved">file salvato correttamente</string>

@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout-land/fragment_color.xml" value="0.25" />
         <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout-land/fragment_send.xml" value="0.11594202898550725" />
+        <entry key="app/src/main/res/layout-land/fragment_visualize.xml" value="0.164021164021164" />
         <entry key="app/src/main/res/layout-v26/cube_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout-v26/fragment_color.xml" value="0.18" />
         <entry key="app/src/main/res/layout-v26/fragment_send.xml" value="0.1" />
@@ -39,14 +40,14 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_import.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_send.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_visualize.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_visualize.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_write.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fru_button.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fru_button_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.33222591362126247" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="app/src/main/res/menu/cube_menu.xml" value="0.22" />
-        <entry key="app/src/main/res/menu/import_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/import_menu.xml" value="0.19411764705882353" />
         <entry key="app/src/main/res/menu/main.xml" value="0.27058823529411763" />
         <entry key="app/src/main/res/menu/visualize_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/write_menu.xml" value="0.19375" />

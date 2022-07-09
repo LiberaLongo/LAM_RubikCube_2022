@@ -23,7 +23,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,8 +61,7 @@ public class ImportFragment extends Fragment {
 	//them explain the same method i think it is best than one only.
 
 	//actual links
-	private String my_pdf_URI = webURI;
-	private String my_web_URI = pdfURI;
+	private String my_URI;
 
 	/* DOWNLOAD */
 	private class DLReceiver extends BroadcastReceiver {
@@ -109,6 +107,8 @@ public class ImportFragment extends Fragment {
 
 		//links model (get and set only)
 		myWebLinks links = new ViewModelProvider(requireActivity()).get(myWebLinks.class);
+		this.my_URI = links.get_my_URI();
+		//System.out.println("MY URI IS THIS NOW: " + my_URI);
 
 		//my views
 		TextView tv = binding.textView;
@@ -117,8 +117,7 @@ public class ImportFragment extends Fragment {
 
 		/* WEB VIEW*/
 		this.webView = binding.webView;
-		this.webView.loadUrl(this.webURI);
-		this.webView.setWebViewClient(new WebViewClient());
+		myWebLinks.search(this.my_URI, webView);
 		Button btnRefresh = binding.btnRefresh;
 		btnRefresh.setOnClickListener(v -> this.webView.reload());
 
@@ -130,12 +129,11 @@ public class ImportFragment extends Fragment {
 			//and save it in private strings
 			String search_string = String.valueOf(editable);
 			if(!search_string.equals("")) {
-				this.my_web_URI = search_string;
+				this.my_URI = search_string;
 				links.set_my_URI(search_string);
 			}
 			//then update the web view
-			this.webView.loadUrl(this.my_web_URI);
-			this.webView.setWebViewClient(new WebViewClient());
+			myWebLinks.search(this.my_URI, webView);
 			//then update the text view
 			tv.setText(search_string);
 		});
@@ -146,8 +144,9 @@ public class ImportFragment extends Fragment {
 		btnDownload.setOnClickListener(v -> {
 			downloadManager = (DownloadManager)
 					requireActivity().getSystemService(DOWNLOAD_SERVICE);
-
-			download_id = downloadManager.enqueue(new DownloadManager.Request(Uri.parse(this.my_pdf_URI))
+			String URI = this.my_URI;
+			if(!this.my_URI.endsWith(".pdf")) URI = pdfURI;
+			download_id = downloadManager.enqueue(new DownloadManager.Request(Uri.parse(URI))
 					.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI |
 							DownloadManager.Request.NETWORK_MOBILE)
 					.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,
@@ -172,34 +171,39 @@ public class ImportFragment extends Fragment {
 		myWebLinks links = new ViewModelProvider(requireActivity()).get(myWebLinks.class);
 
 		String tv_text;
-		boolean web;
+		boolean extern_app = false;
 
 		//array of colours for the cube
 		switch (item.getItemId()) {
 			//case R.id.activity_menu_item:
 			//not implemented here
 			//return false;
+			case R.id.google:
+				this.my_URI = myWebLinks.google;
+				tv_text = getResources().getString(R.string.google);
+				//update the links
+				links.set_my_URI(myWebLinks.google);
+				break;
 			case R.id.default_web:
-				this.my_web_URI = this.webURI;
-				links.set_my_URI(this.webURI);
-				web = true;
+				this.my_URI = this.webURI;
 				tv_text = getResources().getString(R.string.default_web);
+				//update the links
+				links.set_my_URI(this.webURI);
 				break;
 			case R.id.default_pdf:
-				this.my_pdf_URI = this.pdfURI;
-				links.set_my_URI(this.pdfURI);
-				web = false;
+				this.my_URI = this.pdfURI;
 				tv_text = getResources().getString(R.string.default_pdf);
+				//update the links
+				links.set_my_URI(this.pdfURI);
 				break;
-			case R.id.import_web:
-				this.my_web_URI = links.get_my_URI();
-				web = true;
-				tv_text = getResources().getString(R.string.import_web);
+			case R.id.import_new:
+				this.my_URI = links.get_my_URI();
+				tv_text = getResources().getString(R.string.import_new);
 				break;
-			case R.id.import_pdf:
-				this.my_pdf_URI = links.get_my_URI();
-				web = false;
-				tv_text = getResources().getString(R.string.import_pdf);
+			case R.id.view_pdf:
+				this.my_URI = links.get_my_URI();
+				extern_app = true;
+				tv_text = getResources().getString(R.string.view_pdf);
 				break;
 
 			default:
@@ -211,17 +215,13 @@ public class ImportFragment extends Fragment {
 		tv_text += "\n" + links.get_my_URI();
 		tv.setText(tv_text);
 
-		if(web) {
-			//update the web view
-			this.webView.loadUrl(this.my_web_URI);
-			this.webView.setWebViewClient(new WebViewClient());
-		} else {
-			//view the pdf from an extern activity
+		//update the web view
+		myWebLinks.search(this.my_URI, webView);
+		//view the pdf from an extern activity
+		if(extern_app && this.my_URI.endsWith(".pdf")) {
 			Intent intent = new Intent();
 			intent.setAction(Intent.ACTION_VIEW);
-
-			intent.setDataAndType(Uri.parse(this.my_pdf_URI), "application/pdf");
-
+			intent.setDataAndType(Uri.parse(this.my_URI), "application/pdf");
 			startActivity(intent);
 		}
 

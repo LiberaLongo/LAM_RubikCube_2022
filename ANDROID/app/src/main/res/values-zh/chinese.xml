@@ -105,10 +105,12 @@
 	<string name="send_to">发送至</string>
 
 	<!-- import stuff -->
-	<string name="search_uri">在这里写一个URI</string>
+	<string name="search_uri">在此处复制或写入 URI</string>
 	<string name="refresh">刷新</string>
 	<string name="download">下载</string>
 	<string name="download_correct">文件下载正确</string>
+	<string name="import_new">导入新的</string>
+	<string name="view_pdf">从外部应用查看 pdf</string>
 
 	<!-- external files management (外部文件管理) -->
 	<string name="file_saved">文件保存成功</string>

@@ -7,29 +7,29 @@
 	tools:context=".ui.VisualizeFragment">
 
 	<androidx.constraintlayout.widget.Guideline
-		android:id="@+id/guidelineHorizontal"
+		android:id="@+id/guidelineVertical"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		app:layout_constraintGuide_percent="0.35"/>
+		android:orientation="vertical"
+		app:layout_constraintGuide_percent="0.60"/>
 
 	<WebView
 		android:id="@+id/webView"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintStart_toStartOf="@id/guidelineVertical"
 		app:layout_constraintTop_toTopOf="parent" />
 
 	<ScrollView
 		android:id="@+id/scrollView"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
 		android:layout_marginHorizontal="10dp"
-		app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
 		app:layout_constraintTop_toTopOf="parent">
 
 		<LinearLayout
@@ -39,20 +39,20 @@
 
 			<TextView
 				android:id="@+id/textView"
-				android:text="@string/algorithm"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
+				android:layout_height="wrap_content"
+				android:text="@string/algorithm" />
 		</LinearLayout>
 	</ScrollView>
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/cube_frag"
 		android:name="rubik_cube.cube.Cube_Fragment"
-		android:layout_width="fill_parent"
-		android:layout_height="0dp"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
 		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
+		app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

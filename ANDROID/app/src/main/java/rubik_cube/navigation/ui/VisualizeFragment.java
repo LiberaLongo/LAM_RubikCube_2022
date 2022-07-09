@@ -9,8 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import rubik_cube.cube.CubeViewModel;
 import rubik_cube.cube.Cube_Fragment;
 import rubik_cube.cube.myFilesManager;
+import rubik_cube.cube.myWebLinks;
 import rubik_cube.navigation.R;
 import rubik_cube.navigation.databinding.FragmentVisualizeBinding;
 
@@ -46,7 +47,11 @@ public class VisualizeFragment extends Fragment {
 		//navigation stuff...
 		binding = FragmentVisualizeBinding.inflate(inflater, container, false);
 
-		//MODELS
+		//web view invisible
+		WebView webView = binding.webView;
+		webView.setVisibility(View.INVISIBLE);
+
+		//CUBE
 		CubeViewModel cube_model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 		//i want to draw the swapCube at the center of the image
 		cube_model.setSwapCube_SizeXY(60, 200, 200);
@@ -79,19 +84,33 @@ public class VisualizeFragment extends Fragment {
 	@SuppressLint("NonConstantResourceId")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+		//algorithm views
 		TextView tv = binding.textView;
+		WebView webView = binding.webView;
+
+		//model for links
+		myWebLinks links = new ViewModelProvider(requireActivity()).get(myWebLinks.class);
+
 		switch (item.getItemId()) {
 			//case R.id.activity_menu_item:
 			//not implemented here
 			//return false;
 			case R.id.visualize_txt:
+				//get content from file
 				String str = myFilesManager.READ(myFilesManager.WRITE_FILENAME, requireActivity());
+				//preparation of view visibility
+				webView.setVisibility(View.INVISIBLE);
+				tv.setVisibility(View.VISIBLE);
+				//update the view
 				tv.setText(str);
 				return true;
 			case R.id.visualize_pdf:
-				Toast.makeText(requireActivity(),
-						"sorry but the developer hasn't implemented pdf stuff yet",
-						Toast.LENGTH_SHORT).show();
+				//preparation of view visibility
+				tv.setVisibility(View.INVISIBLE);
+				webView.setVisibility(View.VISIBLE);
+				//update the view
+				myWebLinks.search(links.get_my_URI(), webView);
 				return true;
 
 			default:
