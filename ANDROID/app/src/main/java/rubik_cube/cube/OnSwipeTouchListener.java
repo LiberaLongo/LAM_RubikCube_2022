@@ -1,4 +1,7 @@
-package rubik_cube.cube;import android.content.Context;
+package rubik_cube.cube;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
@@ -13,6 +16,7 @@ public class OnSwipeTouchListener implements OnTouchListener {
 		gestureDetector = new GestureDetector(ctx, new GestureListener());
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		return gestureDetector.onTouchEvent(event);
@@ -36,20 +40,18 @@ public class OnSwipeTouchListener implements OnTouchListener {
 				float diffX = e2.getX() - e1.getX();
 				if (Math.abs(diffX) > Math.abs(diffY)) {
 					if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-						if (diffX > 0) {
+						if (diffX > 0)
 							onSwipeRight();
-						} else {
+						else
 							onSwipeLeft();
-						}
 						result = true;
 					}
 				}
 				else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-					if (diffY > 0) {
+					if (diffY > 0)
 						onSwipeBottom();
-					} else {
+					else
 						onSwipeTop();
-					}
 					result = true;
 				}
 			} catch (Exception exception) {

@@ -255,7 +255,7 @@ public class SendFragment extends Fragment {
 		sendIntent.setAction(Intent.ACTION_SEND);
 		sendIntent.putExtra(Intent.EXTRA_TITLE, "Rubik Cube");
 		text += "I tried to send you a link to a PDF algorithm of Rubik Cube";
-		text += "\nis URI is:\n\n" + uri;
+		text += "\nits URI is:\n\n" + uri;
 		text += "\n\nand then you can open from \nRubik Cube app \n-> left side 'menu'\n-> ";
 		text += getResources().getString(R.string.menu_import);
 
