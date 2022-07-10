@@ -18,8 +18,6 @@ import androidx.core.content.ContextCompat;
 
 /** PERMISSIONS */
 public class myPermissionsManagement {
-
-	private static final String LOG = "PERMISSIONS";
 	// look at https://developer.android.com/training/permissions/requesting
 
 	// In an educational UI, explain to the user why your app requires this
@@ -32,14 +30,12 @@ public class myPermissionsManagement {
 		builder.setMessage(to_show).setCancelable(false);
 		builder.setPositiveButton("Yes, allow", (dialog, id) -> {
 			//permissionGrantedNow
-			Log.d(LOG, "permission dialog user answered YES");
 			permissionGranted[0] = true;
 			//and exit dialog
 			dialog.cancel();
 		});
 		builder.setNegativeButton("No, tanks", (dialog, id) -> {
 			//permissionStillDenied
-			Log.d(LOG, "permission dialog user answered NO");
 			permissionGranted[0] = false;
 			//and exit dialog
 			dialog.cancel();
@@ -55,7 +51,7 @@ public class myPermissionsManagement {
 		//then i check if permission is read or write and handle the "manage" permission for android >= 11
 		//if i need read and write i need also "manage"
 		if (permission.equals(READ_EXTERNAL_STORAGE) || permission.equals(WRITE_EXTERNAL_STORAGE)) {
-			Log.d(LOG, "my sdk_int is " + SDK_INT);
+			Log.i("PERMISSIONS", "my sdk_int is " + SDK_INT);
 			if (SDK_INT >= 30)
 				if (!Environment.isExternalStorageManager()) {
 					AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -63,7 +59,6 @@ public class myPermissionsManagement {
 					final boolean[] manages_files = {false};
 					builder.setPositiveButton("Settings", (dialog, id) -> {
 						//permissionGrantedNow
-						Log.d(LOG, "permission MANAGE dialog user answered YES");
 						try {
 							Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
 							Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
@@ -78,7 +73,6 @@ public class myPermissionsManagement {
 					});
 					builder.setNegativeButton("No, tanks", (dialog, id) -> {
 						//permissionStillDenied
-						Log.d(LOG, "permission MANAGE dialog user answered NO");
 						manages_files[0] = false;
 						dialog.cancel();
 					});
@@ -93,17 +87,14 @@ public class myPermissionsManagement {
 		if (ContextCompat.checkSelfPermission(activity, permission) ==
 				PackageManager.PERMISSION_GRANTED) {
 			// You can use the API that requires the permission.
-			Log.d(LOG, "permission already granted");
 			permissionGranted = true;
 		} else if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
 			// In an educational UI, explain to the user why your app requires this
 			// permission for a specific feature to behave as expected. In this UI,
 			// include a "cancel" or "no thanks" button that allows the user to
 			// continue using your app without granting the permission.
-			Log.d(LOG, "shouldShow returned true");
 			permissionGranted = showInContextUI(activity, why_app_need_it);
 		} else {
-			Log.d(LOG, "shouldShow returned false");
 			// You can directly ask for the permission.
 			ActivityCompat.requestPermissions(activity, new String[] {
 					permission }, location);

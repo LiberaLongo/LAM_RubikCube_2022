@@ -197,7 +197,7 @@ public class SendFragment extends Fragment {
 	 * @param filename the filename where i have to write the message
 	 */
 	private String sendMessage(String message, String filename, String reason) {
-		String result = null; //what i should write in the tv
+		String result; //what i should write in the tv
 		String text = ""; //what i should send as explanation
 
 		//now create the send intent
@@ -232,7 +232,6 @@ public class SendFragment extends Fragment {
 				outputStream.write(message.getBytes());
 				outputStream.flush();
 				outputStream.close();
-				Log.d("FILE", file.toString());
 			} catch (Exception e) {
 				String error = file.getAbsolutePath() + "\n" + e.getMessage();
 				text += "FILE ERROR WRITING\n" + error;
@@ -264,6 +263,7 @@ public class SendFragment extends Fragment {
 				sendIntent.putExtra(Intent.EXTRA_STREAM, fileURI);
 			} else {
 				result = "file doesn't exists";
+				return result;
 			}
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text);
 			sendIntent.setType("text/plain");
@@ -272,7 +272,7 @@ public class SendFragment extends Fragment {
 					getResources().getText(R.string.send_to)));
 
 			//note: for some reason in my phone it is "Unsupported content"
-			result += "\nIf u see a 'toast' under with \n' Unsupported content ' "
+			result = "\nIf u see a 'toast' under with \n' Unsupported content ' "
 					+ "\nyou should see if there is a file called ''" + filename + "''"
 					+ "\nin the DOCUMENTS folder (*)\n of your telephone and send it"
 					+ "\nand in the subdirectory called " + folder_name

@@ -91,8 +91,6 @@ public class Cube_Fragment extends Fragment{
  * i seen a post example that uses Kotlin here:
  * https://raghunandan2005.medium.com/mistake-madeusing-livedata-with-fragment-and-viewmodel-1307b2bbe8c4
  */
-			int lastMove = cube.getLastMove();
-			Log.d("CUBE_OBSERVING", "i observed last move is " + lastMove);
 			updateUI(image);
 		});
 
