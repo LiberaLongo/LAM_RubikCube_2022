@@ -51,7 +51,24 @@ public class CubeViewModel extends ViewModel {
 		//colors i can't get from the View Model!
 		return mld_cube;
 	}
-	public Cube getCube() {
+
+	/**
+	 * function that call this need also to know if it is null
+	 * then them MUST HANDLE the null case.
+	 * @return Cube if exists, null otherwise
+	 */
+	public Cube getNullableCube() {
+		if(mld_cube != null)
+			return mld_cube.getValue();
+		else return null;
+	}
+
+	/**
+	 * function that uses this do not check if it is null
+	 * then the app MAY CRASH in those points...
+	 * @return the actual cube
+	 */
+	public Cube getNonNullCube() {
 		return Objects.requireNonNull(mld_cube.getValue());
 	}
 
@@ -75,11 +92,11 @@ public class CubeViewModel extends ViewModel {
 	}
 	//stuff i want the cube can do
 	public void Reset() {
-		mld_cube.setValue(getCube().Reset());
+		mld_cube.setValue(getNonNullCube().Reset());
 		this.movesQueue.clear();
 	}
 	public void Random() {
-		mld_cube.setValue(getCube().Random(10));
+		mld_cube.setValue(getNonNullCube().Random(10));
 		this.movesQueue.clear();
 	}
 	public void MOVE(int move) {
@@ -89,7 +106,7 @@ public class CubeViewModel extends ViewModel {
 		else text += "'";
 		this.add_move_in_queue(this.getLetter(move) + text);
 		//update the cube and notify observers
-		mld_cube.setValue(getCube().MOVE(move, this.clockwise));
+		mld_cube.setValue(getNonNullCube().MOVE(move, this.clockwise));
 		//NOTE: if i update the cube first than the queue
 		// observers can't let the user seen the last move in the "history"
 	}
@@ -176,7 +193,7 @@ public class CubeViewModel extends ViewModel {
 		this.movesQueue.clear();
 		//if i am sure i saved the cube from a cube, and not a "received message"
 		if(string_cube == null) {
-			Cube cube = getCube();
+			Cube cube = getNonNullCube();
 			string_cube = cube.toString();
 			//set last move to -1 so i can show "Save" and after updateUI() function.
 			cube.setLastMove(-1);

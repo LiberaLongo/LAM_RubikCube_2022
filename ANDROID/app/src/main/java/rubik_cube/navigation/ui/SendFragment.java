@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -26,11 +27,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import rubik_cube.cube.Cube;
 import rubik_cube.cube.CubeViewModel;
 import rubik_cube.cube.myFilesManager;
 import rubik_cube.cube.myWebLinks;
 import rubik_cube.navigation.R;
 import rubik_cube.navigation.databinding.FragmentSendBinding;
+import rubik_cube.navigation.myPermissionsManagement;
 
 /**
  * Where the user can send and receive cube and algorithm in txt, pdf.
@@ -92,14 +95,23 @@ public class SendFragment extends Fragment {
 			String text = requireActivity().getString(R.string.send_cube) + "\n";
 			//first i see if user saved something
 			String message = myFilesManager.READ(this.cube_filename, requireActivity());
-			if(message == null)
+			if(message == null) {
 				//if the user didn't save i get the cube message directly from model, the "ACTUAL" configuration.
-				message = cube_model.getCube().toString();
-			text +=	this.sendMessage(message, this.cube_filename);
+				Cube cube = cube_model.getNullableCube();
+				//cube can be null now if cube wasn't created yet
+				if(cube != null)
+					message = cube.toString();
+				else {
+					message = "";
+					Toast.makeText(requireActivity(), "no cube created yet", Toast.LENGTH_LONG).show();
+				}
+			}
+			if(!message.equals(""))
+				text += this.sendMessage(message, this.cube_filename, "cube");
 			tv.setText(text);
 		});
 		receive_cube.setOnClickListener(v -> {
-			String received = this.receive(this.cube_filename, myFilesManager.CHALLENGE_FILENAME);
+			String received = this.receive(this.cube_filename, myFilesManager.CHALLENGE_FILENAME, "cube");
 			String msg = requireActivity().getString(R.string.receive_cube) + "\n" + received;
 			//a message for the user
 			tv.setText(msg);
@@ -109,12 +121,12 @@ public class SendFragment extends Fragment {
 			//a message for the user
 			String text = requireActivity().getString(R.string.send_txt) + "\n";
 			String message = myFilesManager.READ(this.txt_filename, requireActivity());
-			text +=	this.sendMessage(message, this.txt_filename);
+			text +=	this.sendMessage(message, this.txt_filename, "algorithm TXT written by you");
 			tv.setText(text);
 		});
 		receive_txt.setOnClickListener(v -> {
 			//a message for the user
-			String received = this.receive(this.txt_filename, null);
+			String received = this.receive(this.txt_filename, null, "algorithm TXT written by you");
 			String msg = requireActivity().getString(R.string.receive_txt) + "\n" + received;
 			tv.setText(msg);
 		});
@@ -133,38 +145,50 @@ public class SendFragment extends Fragment {
 		return binding.getRoot();
 	}
 
-	/**
-	 * emulates a receive by reading the files from internal memory
+	/* SEND AND RECEIVE */
+	 /** emulates a receive by reading the files from internal memory
 	 * @param filenameExtern filename extern i should read
 	 * @param filenameIntern filename where i should save into, null if equals to extern filename.
 	 * @return a string to be seen by the user
 	 */
-	private String receive(String filenameExtern, String filenameIntern) {
+	private String receive(String filenameExtern, String filenameIntern, String reason) {
 		//result is true if ok a string otherwise
 		String result;
 
-		if(filenameIntern == null) filenameIntern = filenameExtern;
+		//permissions locations
+		int MY_PERMISSIONS_READ = 0;
 
-		File file = new File(this.receivePath, File.separator + filenameExtern);
-		if(file.exists()) {
-			try {
-				//read the extern file
-				String content = readExternalStorage(file);
-				System.out.println(content);
-				//now write in the internal file
-				myFilesManager.WRITE(filenameIntern, requireContext(), content);
-				result = "\n" + file + "\n" + content;
-			} catch (Exception e) {
-				String error = file.getAbsolutePath() +"\n" + e.getMessage();
-				result = "FILE ERROR RECEIVING\n" + error;
-				Log.d("FILE ERROR RECEIVING", error);
+		//ask permission if not granted yet
+		if(myPermissionsManagement.ask_permission(requireActivity(),
+				READ_EXTERNAL_STORAGE, MY_PERMISSIONS_READ,
+				getResources().getString(R.string.app_name) +
+						" will only read a file called " + filenameExtern +
+						" in the Download folder that you placed here that contain the " + reason))
+		{	//if permission granted i can perform tasks
+
+			if(filenameIntern == null) filenameIntern = filenameExtern;
+
+			File file = new File(this.receivePath, File.separator + filenameExtern);
+			if(file.exists()) {
+				try {
+					//read the extern file
+					String content = readExternalStorage(file);
+					System.out.println(content);
+					//now write in the internal file
+					myFilesManager.WRITE(filenameIntern, requireContext(), content);
+					result = "\n" + file + "\n" + content;
+				} catch (Exception e) {
+					String error = file.getAbsolutePath() +"\n" + e.getMessage();
+					result = "FILE ERROR RECEIVING\n" + error;
+					Log.d("FILE ERROR RECEIVING", error);
+				}
+			} else {
+				result = "\nbefore receiving you should save the file received in \n" + file.getPath()
+						+ "\nand it should be named ''" + filenameExtern + "''\nin DOWNLOAD directory (*)"
+						+ "\nand retry pressing 'receive button' u pressed now\n"
+						+ folder_explanation + "Download -> " + filenameExtern + " -> DONE";
 			}
-		} else {
-			result = "\nbefore receiving you should save the file received in \n" + file.getPath();
-			result += "\nand it should be named ''" + filenameExtern + "''\nin DOWNLOAD directory (*)";
-			result += "\nand retry pressing 'receive button' u pressed now\n";
-			result += folder_explanation + "Download -> " + filenameExtern + " -> DONE";
-		}
+		} else { result = "permission is denied, i can't receive, i need read an extern file"; }
 		return result;
 	}
 
@@ -172,13 +196,30 @@ public class SendFragment extends Fragment {
 	 * @param message the message (got from internal files)
 	 * @param filename the filename where i have to write the message
 	 */
-	private String sendMessage(String message, String filename) {
-		String text = "";
-		String folder_name = "rubik_cube";
-		File folder = new File(this.sendPath, folder_name);
-		if(folder.mkdir()) Log.i("FILE FOLDER", "mkdir true");
-		else Log.i("FILE FOLDER", "mkdir false");
-		File file = new File(folder, filename);
+	private String sendMessage(String message, String filename, String reason) {
+		String result = null; //what i should write in the tv
+		String text = ""; //what i should send as explanation
+
+		//now create the send intent
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+
+		//permission location
+		int MY_PERMISSIONS_WRITE = 1;
+
+		//ask permission if not granted yet
+		if(myPermissionsManagement.ask_permission(requireActivity(),
+				WRITE_EXTERNAL_STORAGE, MY_PERMISSIONS_WRITE,
+				getResources().getString(R.string.app_name) +
+						" will only save a file called " + filename +
+						" in the Documents/rubik_cube folder that contain the " + reason))
+		{	//if permission granted i can perform tasks
+
+			String folder_name = "rubik_cube";
+			File folder = new File(this.sendPath, folder_name);
+			if (folder.mkdir()) Log.i("FILE FOLDER", "mkdir true");
+			else Log.i("FILE FOLDER", "mkdir false");
+			File file = new File(folder, filename);
 			//write the message in the external file
 			try {
 				// Create new file
@@ -193,54 +234,54 @@ public class SendFragment extends Fragment {
 				outputStream.close();
 				Log.d("FILE", file.toString());
 			} catch (Exception e) {
-				String error = file.getAbsolutePath() +"\n" + e.getMessage();
+				String error = file.getAbsolutePath() + "\n" + e.getMessage();
 				text += "FILE ERROR WRITING\n" + error;
 				Log.d("FILE ERROR WRITING", error);
 			}
+			//a title
+			sendIntent.putExtra(Intent.EXTRA_TITLE, getResources().getString(R.string.app_name));
+			//intent explanation how to receive it
+			text += "i send you a file called ''" + filename + "''"
+					+ "\nto save in Download folder (*)\n\nand then open from \n"
+					+ getResources().getString(R.string.app_name)
+					+ " app \n-> left side 'menu'\n-> "
+					+ getResources().getString(R.string.menu_send)
+					+ "\n\n(path = " + receivePath.getPath() + File.separator + filename + ")\n"
+					+ folder_explanation + "Download -> " + filename + " -> DONE";
 
-		//now create the send intent
-		Intent sendIntent = new Intent();
-		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_TITLE, "Rubik Cube");
-		text += "i send you a file called ''" + filename + "''";
-		text += "\nto save in Download folder (*) ";
-		text += "\n\nand then open from \nRubik Cube app \n-> left side 'menu'\n-> ";
-		text += getResources().getString(R.string.menu_send);
-		text += "\n\n(path = " + receivePath.getPath() + File.separator + filename + ")\n";
-		text += folder_explanation + "Download -> " + filename + " -> DONE";
+			//if i had success in creating file
+			if (file.exists()) {
+				//uri stuff
+				Uri fileURI = FileProvider.getUriForFile(requireActivity(),
+						requireActivity().getApplicationContext().getPackageName() + ".provider",
+						file);
+				sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);// grant all three uri permissions!List<ResolveInfo> resInfoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
 
-		sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-		//if i had success in creating file
-		if (file.exists()) {
-			//uri stuff
-			Uri fileURI = FileProvider.getUriForFile(requireActivity(),
-					requireActivity().getApplicationContext().getPackageName() + ".provider",
-					file);
-			sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);// grant all three uri permissions!List<ResolveInfo> resInfoList = context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+				requireActivity().grantUriPermission(
+						String.valueOf(file), fileURI,
+						Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-			requireActivity().grantUriPermission(
-					String.valueOf(file), fileURI,
-					Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-			sendIntent.putExtra(Intent.EXTRA_STREAM, fileURI);
-
-		} else { //if i haven't success i try to send the plain text only
-			text = "I tried to send you a file called " + filename;
-			text += "\nbut writing extern file failed ...\n" + message;
+				sendIntent.putExtra(Intent.EXTRA_STREAM, fileURI);
+			} else {
+				result = "file doesn't exists";
+			}
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-		}
-		sendIntent.setType("text/plain");
-		// ... and start the intent
-		startActivity(Intent.createChooser(sendIntent,
-				getResources().getText(R.string.send_to)));
+			sendIntent.setType("text/plain");
+			// ... and start the intent
+			startActivity(Intent.createChooser(sendIntent,
+					getResources().getText(R.string.send_to)));
 
-		//note: for some reason in my phone it is "Unsupported content"
-		String result = "\nIf u see a 'toast' under with \n' Unsupported content ' ";
-		result += "\nyou should see if there is a file called ''" + filename + "''";
-		result += "\nin the DOCUMENTS folder (*)\n of your telephone and send it";
-		result += "\nand in the subdirectory called " + folder_name;
-		result += "\n\nhis path should be:\n" + file + "\n";
-		result += folder_explanation + "Documents -> " + filename + " -> DONE";
+			//note: for some reason in my phone it is "Unsupported content"
+			result += "\nIf u see a 'toast' under with \n' Unsupported content ' "
+					+ "\nyou should see if there is a file called ''" + filename + "''"
+					+ "\nin the DOCUMENTS folder (*)\n of your telephone and send it"
+					+ "\nand in the subdirectory called " + folder_name
+					+ "\n\nhis path should be:\n" + file + "\n"
+					+ folder_explanation + "Documents -> " + filename + " -> DONE";
+		} else {
+			//show permission denied
+			result = "permission is denied, i can't send, i need write an extern file";
+		}
 		return result;
 	}
 
@@ -253,11 +294,14 @@ public class SendFragment extends Fragment {
 		//now create the send intent
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_TITLE, "Rubik Cube");
-		text += "I tried to send you a link to a PDF algorithm of Rubik Cube";
-		text += "\nits URI is:\n\n" + uri;
-		text += "\n\nand then you can open from \nRubik Cube app \n-> left side 'menu'\n-> ";
-		text += getResources().getString(R.string.menu_import);
+		sendIntent.putExtra(Intent.EXTRA_TITLE, getResources().getString(R.string.app_name));
+		text += "I tried to send you a link to a PDF algorithm of"
+				+ getResources().getString(R.string.app_name)
+				+ "\nits URI is:\n\n" + uri
+				+ "\n\nand then you can open from \n"
+				+ getResources().getString(R.string.app_name)
+				+ "app \n-> left side 'menu'\n-> "
+				+ getResources().getString(R.string.menu_import);
 
 		sendIntent.putExtra(Intent.EXTRA_TEXT, text);
 		sendIntent.setType("text/plain");

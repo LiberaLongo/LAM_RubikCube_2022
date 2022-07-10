@@ -142,6 +142,7 @@ public class ImportFragment extends Fragment {
 		downloadReceiver = new DLReceiver();
 		Button btnDownload = binding.buttonDownload;
 		btnDownload.setOnClickListener(v -> {
+
 			downloadManager = (DownloadManager)
 					requireActivity().getSystemService(DOWNLOAD_SERVICE);
 			String URI = this.my_URI;

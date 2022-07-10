@@ -196,7 +196,7 @@ public class Cube_Fragment extends Fragment{
 		CubeViewModel model = new ViewModelProvider(requireActivity()).get(CubeViewModel.class);
 
 		//cube
-		Cube cube = model.getCube();
+		Cube cube = model.getNonNullCube();
 
 		//last move
 		int lastMove = cube.getLastMove();
